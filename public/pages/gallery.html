@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Before & After Gallery — Bhoond Aesthetic Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/gallery.css">
+</head>
+<body>
+
+    <!-- nav -->
+    <nav class="aura-nav">
+        <a href="../index.html" class="aura-nav-logo">
+            <span class="aura-nav-name">Bhoond</span>
+            <span class="aura-nav-tag">Aesthetic Clinic</span>
+        </a>
+        <div class="aura-nav-links">
+            <a href="../index.html#procedures">Procedures</a>
+            <a href="./doctors.html">Surgeons</a>
+            <a href="./gallery.html">Gallery</a>
+            <a href="./contact.html">Contact</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+            <a href="./login.html" class="aura-nav-signin">Sign In</a>
+            <a href="./doctors.html" class="aura-nav-cta">Book Consultation</a>
+        </div>
+    </nav>
+
+    <!-- hero -->
+    <section class="gallery-hero" aria-label="Gallery hero">
+        <span class="gallery-hero-label">Real Results</span>
+        <h1 class="gallery-hero-heading">Before &amp; After</h1>
+        <p class="gallery-hero-sub">Real patients. Real surgeons. Honest outcomes.</p>
+
+        <div class="gallery-filters" role="group" aria-label="Filter by procedure">
+            <button class="gallery-filter-pill active" data-filter="all" onclick="filterGallery('all', this)">All</button>
+            <button class="gallery-filter-pill" data-filter="rhinoplasty" onclick="filterGallery('rhinoplasty', this)">Rhinoplasty</button>
+            <button class="gallery-filter-pill" data-filter="facelift" onclick="filterGallery('facelift', this)">Facelift</button>
+            <button class="gallery-filter-pill" data-filter="eyelid" onclick="filterGallery('eyelid', this)">Eyelid Surgery</button>
+            <button class="gallery-filter-pill" data-filter="contouring" onclick="filterGallery('contouring', this)">Facial Contouring</button>
+            <button class="gallery-filter-pill" data-filter="revision" onclick="filterGallery('revision', this)">Revision</button>
+        </div>
+    </section>
+
+    <!-- ── GALLERY GRID ── -->
+    <section class="gallery-section" aria-label="Before and after gallery">
+        <div class="gallery-grid" id="galleryGrid">
+
+            <!-- Card 1 — Rhinoplasty -->
+            <article class="gallery-card" data-procedure="rhinoplasty" aria-label="Rhinoplasty result">
+                <div class="gallery-card-images">
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=300&fit=crop"
+                            alt="Before rhinoplasty" loading="lazy">
+                        <span class="gallery-img-label before">Before</span>
+                    </div>
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=300&fit=crop"
+                            alt="After rhinoplasty" loading="lazy">
+                        <span class="gallery-img-label after">After</span>
+                    </div>
+                    <div class="gallery-divider" aria-hidden="true">
+                        <div class="gallery-divider-dot">↔</div>
+                    </div>
+                </div>
+                <div class="gallery-card-body">
+                    <div class="gallery-card-left">
+                        <span class="gallery-proc-tag">Rhinoplasty</span>
+                        <span class="gallery-card-demo">Female · 28</span>
+                    </div>
+                    <span class="gallery-card-surgeon">Dr. Priya Malhotra</span>
+                </div>
+            </article>
+
+            <!-- Card 2 — Facelift -->
+            <article class="gallery-card" data-procedure="facelift" aria-label="Facelift result">
+                <div class="gallery-card-images">
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop"
+                            alt="Before facelift" loading="lazy">
+                        <span class="gallery-img-label before">Before</span>
+                    </div>
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400&h=300&fit=crop"
+                            alt="After facelift" loading="lazy">
+                        <span class="gallery-img-label after">After</span>
+                    </div>
+                    <div class="gallery-divider" aria-hidden="true">
+                        <div class="gallery-divider-dot">↔</div>
+                    </div>
+                </div>
+                <div class="gallery-card-body">
+                    <div class="gallery-card-left">
+                        <span class="gallery-proc-tag">Facelift</span>
+                        <span class="gallery-card-demo">Female · 52</span>
+                    </div>
+                    <span class="gallery-card-surgeon">Dr. Arjun Sethi</span>
+                </div>
+            </article>
+
+            <!-- Card 3 — Eyelid Surgery -->
+            <article class="gallery-card" data-procedure="eyelid" aria-label="Eyelid surgery result">
+                <div class="gallery-card-images">
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=300&fit=crop"
+                            alt="Before eyelid surgery" loading="lazy">
+                        <span class="gallery-img-label before">Before</span>
+                    </div>
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=300&fit=crop"
+                            alt="After eyelid surgery" loading="lazy">
+                        <span class="gallery-img-label after">After</span>
+                    </div>
+                    <div class="gallery-divider" aria-hidden="true">
+                        <div class="gallery-divider-dot">↔</div>
+                    </div>
+                </div>
+                <div class="gallery-card-body">
+                    <div class="gallery-card-left">
+                        <span class="gallery-proc-tag">Eyelid Surgery</span>
+                        <span class="gallery-card-demo">Female · 34</span>
+                    </div>
+                    <span class="gallery-card-surgeon">Dr. Sneha Kapoor</span>
+                </div>
+            </article>
+
+            <!-- Card 4 — Facial Contouring -->
+            <article class="gallery-card" data-procedure="contouring" aria-label="Facial contouring result">
+                <div class="gallery-card-images">
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=300&fit=crop"
+                            alt="Before facial contouring" loading="lazy">
+                        <span class="gallery-img-label before">Before</span>
+                    </div>
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=300&fit=crop"
+                            alt="After facial contouring" loading="lazy">
+                        <span class="gallery-img-label after">After</span>
+                    </div>
+                    <div class="gallery-divider" aria-hidden="true">
+                        <div class="gallery-divider-dot">↔</div>
+                    </div>
+                </div>
+                <div class="gallery-card-body">
+                    <div class="gallery-card-left">
+                        <span class="gallery-proc-tag">Facial Contouring</span>
+                        <span class="gallery-card-demo">Female · 26</span>
+                    </div>
+                    <span class="gallery-card-surgeon">Dr. Rohan Mehra</span>
+                </div>
+            </article>
+
+            <!-- Card 5 — Revision Surgery -->
+            <article class="gallery-card" data-procedure="revision" aria-label="Revision surgery result">
+                <div class="gallery-card-images">
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=300&fit=crop"
+                            alt="Before revision surgery" loading="lazy">
+                        <span class="gallery-img-label before">Before</span>
+                    </div>
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&h=300&fit=crop"
+                            alt="After revision surgery" loading="lazy">
+                        <span class="gallery-img-label after">After</span>
+                    </div>
+                    <div class="gallery-divider" aria-hidden="true">
+                        <div class="gallery-divider-dot">↔</div>
+                    </div>
+                </div>
+                <div class="gallery-card-body">
+                    <div class="gallery-card-left">
+                        <span class="gallery-proc-tag">Revision Surgery</span>
+                        <span class="gallery-card-demo">Female · 41</span>
+                    </div>
+                    <span class="gallery-card-surgeon">Dr. Kavya Nair</span>
+                </div>
+            </article>
+
+            <!-- Card 6 — Rhinoplasty -->
+            <article class="gallery-card" data-procedure="rhinoplasty" aria-label="Rhinoplasty result 2">
+                <div class="gallery-card-images">
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=300&fit=crop"
+                            alt="Before rhinoplasty" loading="lazy">
+                        <span class="gallery-img-label before">Before</span>
+                    </div>
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop"
+                            alt="After rhinoplasty" loading="lazy">
+                        <span class="gallery-img-label after">After</span>
+                    </div>
+                    <div class="gallery-divider" aria-hidden="true">
+                        <div class="gallery-divider-dot">↔</div>
+                    </div>
+                </div>
+                <div class="gallery-card-body">
+                    <div class="gallery-card-left">
+                        <span class="gallery-proc-tag">Rhinoplasty</span>
+                        <span class="gallery-card-demo">Male · 31</span>
+                    </div>
+                    <span class="gallery-card-surgeon">Dr. Priya Malhotra</span>
+                </div>
+            </article>
+
+            <!-- Card 7 — Facelift -->
+            <article class="gallery-card" data-procedure="facelift" aria-label="Facelift result 2">
+                <div class="gallery-card-images">
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400&h=300&fit=crop"
+                            alt="Before facelift" loading="lazy">
+                        <span class="gallery-img-label before">Before</span>
+                    </div>
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=300&fit=crop"
+                            alt="After facelift" loading="lazy">
+                        <span class="gallery-img-label after">After</span>
+                    </div>
+                    <div class="gallery-divider" aria-hidden="true">
+                        <div class="gallery-divider-dot">↔</div>
+                    </div>
+                </div>
+                <div class="gallery-card-body">
+                    <div class="gallery-card-left">
+                        <span class="gallery-proc-tag">Facelift</span>
+                        <span class="gallery-card-demo">Female · 58</span>
+                    </div>
+                    <span class="gallery-card-surgeon">Dr. Arjun Sethi</span>
+                </div>
+            </article>
+
+            <!-- Card 8 — Eyelid Surgery -->
+            <article class="gallery-card" data-procedure="eyelid" aria-label="Eyelid surgery result 2">
+                <div class="gallery-card-images">
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=300&fit=crop"
+                            alt="Before eyelid surgery" loading="lazy">
+                        <span class="gallery-img-label before">Before</span>
+                    </div>
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=300&fit=crop"
+                            alt="After eyelid surgery" loading="lazy">
+                        <span class="gallery-img-label after">After</span>
+                    </div>
+                    <div class="gallery-divider" aria-hidden="true">
+                        <div class="gallery-divider-dot">↔</div>
+                    </div>
+                </div>
+                <div class="gallery-card-body">
+                    <div class="gallery-card-left">
+                        <span class="gallery-proc-tag">Eyelid Surgery</span>
+                        <span class="gallery-card-demo">Female · 45</span>
+                    </div>
+                    <span class="gallery-card-surgeon">Dr. Sneha Kapoor</span>
+                </div>
+            </article>
+
+            <!-- Card 9 — Facial Contouring -->
+            <article class="gallery-card" data-procedure="contouring" aria-label="Facial contouring result 2">
+                <div class="gallery-card-images">
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=300&fit=crop"
+                            alt="Before facial contouring" loading="lazy">
+                        <span class="gallery-img-label before">Before</span>
+                    </div>
+                    <div class="gallery-img-wrap">
+                        <img class="gallery-card-img"
+                            src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=300&fit=crop"
+                            alt="After facial contouring" loading="lazy">
+                        <span class="gallery-img-label after">After</span>
+                    </div>
+                    <div class="gallery-divider" aria-hidden="true">
+                        <div class="gallery-divider-dot">↔</div>
+                    </div>
+                </div>
+                <div class="gallery-card-body">
+                    <div class="gallery-card-left">
+                        <span class="gallery-proc-tag">Facial Contouring</span>
+                        <span class="gallery-card-demo">Female · 29</span>
+                    </div>
+                    <span class="gallery-card-surgeon">Dr. Rohan Mehra</span>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ── BOTTOM CTA ── -->
+    <section class="gallery-cta" aria-label="Call to action">
+        <h2 class="gallery-cta-heading">Ready for Your Transformation?</h2>
+        <p class="gallery-cta-sub">
+            Every result you see here began with a single consultation. Take the first step today.
+        </p>
+        <div class="gallery-cta-actions">
+            <a href="./doctors.html" class="btn">Book a Consultation</a>
+            <a href="./contact.html" class="btn-outline">Ask a Question</a>
+        </div>
+    </section>
+
+    <script>
+        // filter gallery cards by procedure
+        function filterGallery(filter, btn) {
+            // Update active pill
+            document.querySelectorAll('.gallery-filter-pill').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Show/hide cards
+            document.querySelectorAll('.gallery-card').forEach(card => {
+                if (filter === 'all' || card.dataset.procedure === filter) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

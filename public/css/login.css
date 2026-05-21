@@ -1,0 +1,344 @@
+/* ============================================
+   LOGIN / SIGNUP PAGE — Aura Aesthetic Clinic
+   ============================================ */
+
+html, body {
+    height: 100%;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.center {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+}
+
+/* ── CARD ────────────────────────────────────────────────────────────────── */
+.login-card {
+    width: 960px;
+    max-width: 96%;
+    display: flex;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 40px rgba(44, 40, 38, 0.08);
+    background: #fff;
+}
+
+/* ── LEFT PANEL ──────────────────────────────────────────────────────────── */
+.login-hero {
+    flex: 1.1;
+    background: var(--surface);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 280px;
+}
+
+/* Logo */
+.logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    flex-shrink: 0;
+}
+
+.logo-text-wrap {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.logo-sub {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+/* Quote */
+.hero-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--text);
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* Lead text */
+p.lead {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 300px;
+}
+
+/* Hero image — pushed to bottom */
+.hero-image {
+    margin-top: auto;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    width: 100%;
+    aspect-ratio: 3/2;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── RIGHT PANEL ─────────────────────────────────────────────────────────── */
+.forms {
+    flex: 1;
+    padding: 40px 36px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+}
+
+/* ── TABS ────────────────────────────────────────────────────────────────── */
+.tabs {
+    display: inline-flex;
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 4px;
+    margin-bottom: 24px;
+    align-self: flex-start;
+}
+
+.tab {
+    padding: 9px 22px;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.tab.active {
+    background: #fff;
+    color: var(--text);
+    box-shadow: 0 2px 8px rgba(44, 40, 38, 0.08);
+}
+
+/* ── FORM ────────────────────────────────────────────────────────────────── */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 14px;
+}
+
+label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 11px 40px 11px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+input::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+input:focus { border-color: var(--accent); }
+
+/* Password toggle */
+.pwd-icon {
+    position: absolute;
+    right: 12px;
+    bottom: 11px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.pwd-icon:hover { opacity: 1; }
+
+/* Error text */
+.error {
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 4px;
+    min-height: 16px;
+}
+
+/* Forgot link */
+.forgot-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+    margin-top: -6px;
+}
+
+.inline-link {
+    font-size: 13px;
+    color: var(--gold);
+    cursor: pointer;
+    text-decoration: none;
+    transition: text-decoration 0.15s;
+}
+
+.inline-link:hover { text-decoration: underline; }
+
+/* ── BUTTONS ─────────────────────────────────────────────────────────────── */
+.login-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 999px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 10px;
+}
+
+.login-btn:hover {
+    background: #c49490;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 165, 160, 0.3);
+}
+
+.login-btn:active { transform: translateY(0); }
+
+.login-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.login-btn.secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: none;
+}
+
+.login-btn.secondary:hover {
+    background: var(--bg);
+    border-color: var(--text-muted);
+    box-shadow: none;
+    transform: translateY(-1px);
+}
+
+/* ── PASSWORD STRENGTH ───────────────────────────────────────────────────── */
+.strength {
+    height: 3px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 6px;
+}
+
+.strength > i {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    transition: width 0.25s, background 0.25s;
+}
+
+/* ── NOTICES ─────────────────────────────────────────────────────────────── */
+.notice {
+    padding: 11px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-top: 4px;
+    border: 1px solid transparent;
+}
+
+.notice.success {
+    background: var(--surface);
+    color: var(--gold);
+    border-color: var(--border);
+}
+
+.notice.error {
+    background: rgba(212, 165, 160, 0.12);
+    color: var(--accent);
+    border-color: rgba(212, 165, 160, 0.3);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 800px) {
+    .login-card {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .login-hero {
+        order: 2;
+        padding: 28px 24px;
+    }
+
+    .hero-image { display: none; }
+
+    .forms { padding: 32px 24px; }
+}

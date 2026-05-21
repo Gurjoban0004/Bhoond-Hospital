@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Bhoond Aesthetic Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- back button -->
+        <a href="../index.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Home
+        </a>
+
+        <!-- page hero -->
+        <section class="contact-hero" aria-labelledby="contact-hero-title">
+            <span class="hero-eyebrow">Bhoond Aesthetic Clinic · Contact</span>
+            <h1 id="contact-hero-title">Let's Talk Beauty</h1>
+            <p class="hero-sub">Reach out to book a consultation, ask about a procedure, or simply say hello.</p>
+
+            <div class="quick" role="list" aria-label="Quick contact actions">
+                <a href="tel:+917837330004" role="listitem">
+                    <i class="fa-solid fa-phone"></i> +91 78373 30004
+                </a>
+                <a href="mailto:contact@Bhoondaesthetic.com" role="listitem">
+                    <i class="fa-solid fa-envelope"></i> contact@Bhoondaesthetic.com
+                </a>
+            </div>
+        </section>
+
+        <!-- contact grid -->
+        <div class="contact-grid">
+
+            <!-- Left — Info card -->
+            <div class="contact-card contact-info" aria-label="Contact information">
+                <h2>Visit Us</h2>
+
+                <div class="info-row">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info-text">Bhoond Aesthetic Clinic, Rajpura Road, Patiala, India</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="info-text">
+                        <a href="tel:+917837330004">+91 78373 30004</a>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="info-text">
+                        <a href="mailto:contact@Bhoondaesthetic.com">contact@Bhoondaesthetic.com</a>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="info-text">Mon–Sat, 10:00–19:00</div>
+                </div>
+
+                <div class="small-card">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <div>
+                        <div class="small-card-title">Free Consultation</div>
+                        <div class="small-card-sub">In-person or virtual</div>
+                    </div>
+                </div>
+
+                <span class="socials-label">Follow Us</span>
+                <div class="socials">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Right — Form + Map -->
+            <aside class="right-rail">
+
+                <!-- Message form -->
+                <div class="contact-card contact-form" aria-labelledby="formTitle">
+                    <h2 id="formTitle">Send a Message</h2>
+                    <form id="contactForm" novalidate>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Your name</label>
+                                <input id="name" name="name" type="text" placeholder="e.g. Priya Sharma" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label>
+                            <input id="phone" name="phone" type="tel" placeholder="+91 9XXXXXXXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about the procedure you're interested in, or ask us anything…" required></textarea>
+                        </div>
+
+                        <button type="submit">Send Message</button>
+                        <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+                    </form>
+                </div>
+
+                <!-- Map -->
+                <div class="map-card">
+                    <h2>Find Us</h2>
+                    <div class="map">
+                        <iframe
+                            src="https://www.google.com/maps?q=30.3398,76.3869&output=embed"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Bhoond Aesthetic Clinic location"
+                            aria-label="Map showing clinic location">
+                        </iframe>
+                    </div>
+                    <p class="map-address">
+                        Bhoond Aesthetic Clinic, Rajpura Road, Patiala, 147001
+                    </p>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        const form        = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        function showMessage(msg, success) {
+            formMessage.textContent = msg;
+            formMessage.style.display = 'block';
+            formMessage.className = 'form-message ' + (success ? 'success' : 'error');
+            setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
+        }
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const name    = form.name.value.trim();
+            const email   = form.email.value.trim();
+            const phone   = form.phone.value.trim();
+            const message = form.message.value.trim();
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!name || !email || !message) {
+                showMessage('Please fill in all required fields.', false);
+                return;
+            }
+            if (!emailRegex.test(email)) {
+                showMessage('Please enter a valid email address.', false);
+                return;
+            }
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const original  = submitBtn.textContent;
+            submitBtn.textContent = 'Sending…';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch('/api/contacts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, phone, message, subject: 'Website Enquiry' }),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showMessage(result.message || "Thank you — we'll be in touch shortly.", true);
+                    form.reset();
+                } else {
+                    showMessage(result.error || 'Something went wrong. Please try again.', false);
+                }
+            } catch {
+                showMessage('Server is not running. Make sure the server is started on port 3000.', false);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = original;
+            }
+        });
+    </script>
+</body>
+</html>

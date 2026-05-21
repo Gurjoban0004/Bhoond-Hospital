@@ -1,0 +1,575 @@
+/* ============================================
+   DASHBOARD PAGE — Aura Aesthetic Clinic
+   ============================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────────────────────────── */
+.dash-sidebar {
+    width: 240px;
+    min-height: 100vh;
+    background: var(--text); /* #2C2826 */
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.dash-sidebar-logo {
+    padding: 28px 24px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    text-decoration: none;
+    display: block;
+}
+
+.dash-sidebar-logo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+}
+
+.dash-sidebar-logo-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 3px;
+    display: block;
+}
+
+.dash-sidebar-nav {
+    flex: 1;
+    padding: 16px 0;
+}
+
+.dash-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    cursor: pointer;
+    background: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    width: 100%;
+    text-align: left;
+}
+
+.dash-nav-item:hover,
+.dash-nav-item.active {
+    color: #fff;
+    border-left-color: var(--accent);
+    background: rgba(255,255,255,0.05);
+}
+
+.dash-nav-icon {
+    font-size: 16px;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.dash-sidebar-bottom {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dash-user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.dash-user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.dash-user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dash-signout {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
+    display: block;
+    margin-top: 2px;
+}
+
+.dash-signout:hover { color: var(--accent); }
+
+/* ── MAIN CONTENT ────────────────────────────────────────────────────────── */
+.dash-main {
+    margin-left: 240px;
+    flex: 1;
+    padding: 48px 48px 64px;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+/* ── WELCOME ─────────────────────────────────────────────────────────────── */
+.dash-welcome {
+    margin-bottom: 40px;
+}
+
+.dash-greeting {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+.dash-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+/* ── STATS ROW ───────────────────────────────────────────────────────────── */
+.dash-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.dash-stat-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 20px;
+}
+
+.dash-stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.dash-stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.1;
+}
+
+.dash-stat-value.gold { color: var(--gold); }
+
+/* ── SECTION HEADING ─────────────────────────────────────────────────────── */
+.dash-section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+/* ── CONSULTATION CARD ───────────────────────────────────────────────────── */
+.dash-consult-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.dash-consult-photo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+}
+
+.dash-consult-info {
+    flex: 1;
+    min-width: 200px;
+}
+
+.dash-consult-surgeon {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.dash-consult-specialty {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.dash-consult-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dash-consult-meta-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dash-consult-meta-item strong {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.dash-consult-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.dash-btn {
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dash-btn-primary {
+    background: var(--accent);
+    color: #fff;
+}
+
+.dash-btn-primary:hover { background: #c49490; }
+
+.dash-btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text);
+}
+
+.dash-btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.dash-btn-video {
+    background: var(--surface);
+    color: var(--text);
+    border: 1.5px solid var(--border);
+}
+
+.dash-btn-video:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* ── STEPPER ─────────────────────────────────────────────────────────────── */
+.dash-stepper-wrap {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 40px;
+}
+
+.dash-stepper {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.dash-step {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+.dash-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: var(--border);
+    z-index: 0;
+}
+
+.dash-step.done:not(:last-child)::after,
+.dash-step.active:not(:last-child)::after {
+    background: var(--gold);
+}
+
+.dash-step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 10px;
+    transition: all 0.2s;
+}
+
+.dash-step.done .dash-step-circle {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+}
+
+.dash-step.active .dash-step-circle {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 0 4px rgba(212,165,160,0.2);
+}
+
+.dash-step-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    max-width: 100px;
+}
+
+.dash-step.done .dash-step-label,
+.dash-step.active .dash-step-label {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.dash-stepper-note {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* ── DOCUMENTS ───────────────────────────────────────────────────────────── */
+.dash-docs-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.dash-doc-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.dash-doc-row:last-child { border-bottom: none; }
+
+.dash-doc-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(201,169,110,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.dash-doc-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.dash-doc-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-right: 16px;
+}
+
+.dash-doc-download {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.dash-doc-download:hover { color: #c49490; }
+
+/* ── QUICK ACTIONS ───────────────────────────────────────────────────────── */
+.dash-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.dash-quick-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    display: block;
+}
+
+.dash-quick-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(44,40,38,0.08);
+    border-color: var(--accent);
+}
+
+.dash-quick-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.dash-quick-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.dash-quick-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .dash-stats-row { grid-template-columns: repeat(2, 1fr); }
+    .dash-quick-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .dash-sidebar {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .dash-main {
+        margin-left: 0;
+        padding: 24px 20px 48px;
+    }
+
+    body { flex-direction: column; }
+
+    .dash-stats-row { grid-template-columns: 1fr 1fr; }
+    .dash-quick-grid { grid-template-columns: 1fr; }
+
+    .dash-sidebar-nav {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 8px;
+        width: 100%;
+    }
+
+    .dash-nav-item {
+        padding: 10px 14px;
+        font-size: 12px;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+
+    .dash-nav-item:hover,
+    .dash-nav-item.active {
+        border-left-color: transparent;
+        border-bottom-color: var(--accent);
+    }
+}
+
+@media (max-width: 480px) {
+    .dash-stats-row { grid-template-columns: 1fr; }
+    .dash-greeting { font-size: 30px; }
+}

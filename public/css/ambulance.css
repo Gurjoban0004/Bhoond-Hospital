@@ -1,0 +1,316 @@
+/* ============================================
+   AMBULANCE PAGE — ambulance.html
+   ============================================ */
+
+:root {
+    --teal: #6BA5CF;
+    --teal-600: #A8D5BA;
+    --accent: #F4A5A5;
+    --bg: #F8FAFB;
+    --card: #ffffff;
+    --glass: rgba(255, 255, 255, 0.08);
+    --shadow: 0 4px 16px rgba(168, 213, 186, 0.15);
+    --radius: 14px;
+    --max-width: 980px;
+}
+
+body {
+    background: linear-gradient(180deg, #F8FAFB 0%, #E8F4F8 100%);
+    color: #4A5568;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+}
+
+/* --- Container --- */
+.amb-container {
+    width: 100%;
+    max-width: var(--max-width);
+    background: var(--card);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 0;
+    align-items: stretch;
+}
+
+/* --- App Bar --- */
+.appbar {
+    grid-column: 1/-1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 28px;
+    background: linear-gradient(135deg, #D4F1E8 0%, #B8E6D5 50%, #A8D5BA 100%);
+    color: #2D5F4F;
+    border-bottom: 3px solid rgba(168, 213, 186, 0.4);
+    position: relative;
+}
+
+.appbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6BA5CF, #A8D5BA, #C9A8E8, #F4A5A5);
+    opacity: 0.6;
+}
+
+.appbar .brand {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-weight: 600;
+    color: #1A4D3A;
+}
+
+.appbar .brand img {
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(168, 213, 186, 0.3);
+    border: 2px solid white;
+}
+
+.appbar a.back {
+    color: #2D5F4F;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.appbar a.back:hover {
+    background: white;
+    color: #1A4D3A;
+    transform: translateY(-1px);
+}
+
+/* --- Main Content --- */
+.amb-main {
+    padding: 34px;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(0, 121, 107, 0.04), transparent 8%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.02), transparent);
+}
+
+.amb-hero {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.amb-hero .info {
+    flex: 1;
+}
+
+.kicker {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 10px;
+    background: rgba(168, 213, 186, 0.2);
+    color: #2D5F4F;
+    font-weight: 600;
+    font-size: 13px;
+    border: 1px solid rgba(168, 213, 186, 0.3);
+}
+
+.amb-main h1 {
+    margin: 10px 0 6px;
+    font-size: 26px;
+    color: #1A4D3A;
+    font-weight: 600;
+}
+
+p.lead {
+    margin: 0 0 16px;
+    line-height: 1.6;
+    color: #718096;
+}
+
+ul.benefits {
+    margin: 14px 0 0;
+    padding-left: 18px;
+    color: #345;
+}
+
+ul.benefits li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* --- Form --- */
+.form-wrap {
+    padding: 26px;
+    background: linear-gradient(180deg, #ffffff, #fbfffe);
+    border-left: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+form.request-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    font-size: 13px;
+    color: #234;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #e6eef0;
+    font-size: 14px;
+    background: transparent;
+    outline: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row .col {
+    flex: 1;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+/* --- Buttons --- */
+.amb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.amb-btn.call {
+    background: linear-gradient(135deg, #F4A5A5, #F08E8E);
+    box-shadow: 0 4px 12px rgba(244, 165, 165, 0.25);
+}
+
+.amb-btn.call:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(244, 165, 165, 0.35);
+}
+
+.amb-btn.alert {
+    background: linear-gradient(135deg, #6BA5CF, #A8D5BA);
+    box-shadow: 0 4px 12px rgba(107, 165, 207, 0.25);
+}
+
+.amb-btn.alert:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(107, 165, 207, 0.35);
+}
+
+.amb-btn.secondary {
+    background: rgba(168, 213, 186, 0.15);
+    color: #2D5F4F;
+    font-weight: 600;
+    border: 2px solid rgba(168, 213, 186, 0.3);
+}
+
+.amb-btn.secondary:hover {
+    background: rgba(168, 213, 186, 0.25);
+    border-color: #A8D5BA;
+}
+
+.small-note {
+    font-size: 13px;
+    color: #5a6b68;
+}
+
+.meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #5a6b68;
+}
+
+.eta {
+    background: rgba(0, 0, 0, 0.03);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-weight: 700;
+    color: #133;
+}
+
+/* --- Toast --- */
+.toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: var(--teal);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all .28s ease;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- Responsive --- */
+@media (max-width: 980px) {
+    .amb-container {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .form-wrap {
+        order: 2;
+        border-left: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .appbar {
+        padding: 14px;
+    }
+}

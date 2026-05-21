@@ -1,0 +1,522 @@
+/* ============================================
+   PROCEDURE DETAIL PAGE — Aura Aesthetic Clinic
+   ============================================ */
+
+/* ── HERO ────────────────────────────────────────────────────────────────── */
+.proc-hero {
+    height: 70vh;
+    min-height: 520px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+}
+
+.proc-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(250,248,245,0.96) 45%, rgba(250,248,245,0.3) 100%);
+}
+
+.proc-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 64px;
+    max-width: 640px;
+}
+
+.proc-breadcrumb {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.proc-breadcrumb a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.proc-breadcrumb a:hover { color: var(--accent); }
+
+.proc-subtitle-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.proc-hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 5vw, 64px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.05;
+    margin-bottom: 12px;
+}
+
+.proc-hero-tagline {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+.proc-stats-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.proc-stat-pill {
+    background: rgba(250,248,245,0.85);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.proc-stat-pill strong {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.proc-hero-fee {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 24px;
+}
+
+.proc-hero-fee span {
+    color: var(--gold);
+}
+
+.proc-hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* ── OVERVIEW ────────────────────────────────────────────────────────────── */
+.proc-overview {
+    padding: 80px 64px;
+    background: var(--bg);
+}
+
+.proc-overview-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+}
+
+.proc-section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.proc-overview-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.proc-overview-text {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.proc-benefits-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.proc-benefits-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.proc-benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.proc-benefits-list li::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* ── RECOVERY TIMELINE ───────────────────────────────────────────────────── */
+.proc-timeline {
+    padding: 80px 64px;
+    background: var(--surface);
+}
+
+.proc-timeline-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.proc-timeline-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.proc-timeline-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 10px;
+}
+
+.proc-timeline-cards {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.proc-timeline-cards::-webkit-scrollbar { display: none; }
+
+.proc-timeline-card {
+    flex: 0 0 180px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    position: relative;
+}
+
+.proc-timeline-card::after {
+    content: '→';
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--border);
+    font-size: 18px;
+    z-index: 1;
+}
+
+.proc-timeline-card:last-child::after { display: none; }
+
+.proc-timeline-day {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+
+.proc-timeline-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ── SURGEONS ────────────────────────────────────────────────────────────── */
+.proc-surgeons {
+    padding: 80px 64px;
+    background: var(--bg);
+}
+
+.proc-surgeons-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.proc-surgeons-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.proc-surgeons-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 10px;
+}
+
+.proc-surgeons-grid {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.proc-surgeon-card {
+    text-align: center;
+    width: 180px;
+}
+
+.proc-surgeon-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border);
+    margin: 0 auto 14px;
+    display: block;
+    transition: border-color 0.2s;
+}
+
+.proc-surgeon-card:hover .proc-surgeon-photo {
+    border-color: var(--accent);
+}
+
+.proc-surgeon-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.proc-surgeon-specialty {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 6px;
+}
+
+.proc-surgeon-creds {
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* ── FAQ ─────────────────────────────────────────────────────────────────── */
+.proc-faq {
+    padding: 80px 64px;
+    background: var(--surface);
+}
+
+.proc-faq-inner {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.proc-faq-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.proc-faq-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 10px;
+}
+
+.proc-faq-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.proc-faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    text-align: left;
+    gap: 16px;
+}
+
+.proc-faq-icon {
+    font-size: 20px;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    line-height: 1;
+}
+
+.proc-faq-item.open .proc-faq-icon {
+    transform: rotate(45deg);
+}
+
+.proc-faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.25s ease;
+    padding: 0 24px;
+}
+
+.proc-faq-item.open .proc-faq-answer {
+    max-height: 400px;
+    padding: 0 24px 20px;
+}
+
+.proc-faq-answer p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+/* ── RELATED PROCEDURES ──────────────────────────────────────────────────── */
+.proc-related {
+    padding: 80px 64px;
+    background: var(--bg);
+}
+
+.proc-related-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.proc-related-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.proc-related-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 10px;
+}
+
+.proc-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.proc-related-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    display: block;
+}
+
+.proc-related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(44,40,38,0.08);
+    border-color: var(--accent);
+}
+
+.proc-related-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.proc-related-card-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.proc-related-arrow {
+    font-size: 18px;
+    color: var(--gold);
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+.proc-related-card:hover .proc-related-arrow { transform: translateX(4px); }
+
+/* ── MOBILE STICKY CTA ───────────────────────────────────────────────────── */
+.proc-mobile-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 14px 20px;
+    z-index: 900;
+    gap: 10px;
+}
+
+.proc-mobile-cta .btn,
+.proc-mobile-cta .btn-outline {
+    flex: 1;
+    text-align: center;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .proc-hero-content { padding: 0 24px; }
+    .proc-overview { padding: 60px 24px; }
+    .proc-overview-grid { grid-template-columns: 1fr; gap: 40px; }
+    .proc-timeline { padding: 60px 24px; }
+    .proc-surgeons { padding: 60px 24px; }
+    .proc-faq { padding: 60px 24px; }
+    .proc-related { padding: 60px 24px; }
+    .proc-related-grid { grid-template-columns: 1fr; }
+    .proc-mobile-cta { display: flex; }
+    body { padding-bottom: 80px; }
+}
+
+@media (max-width: 600px) {
+    .proc-hero { height: auto; min-height: 100vh; padding: 80px 0 40px; }
+    .proc-hero-name { font-size: 40px; }
+    .proc-timeline-card { flex: 0 0 150px; }
+}

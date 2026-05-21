@@ -1,0 +1,666 @@
+/* ============================================
+   HOME PAGE — Aura Aesthetic Clinic
+   ============================================ */
+
+body { padding-bottom: 72px; } /* space for fixed bottom nav */
+
+/* ── HEADER / NAV ────────────────────────────────────────────────────────── */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Logo */
+.logo a {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.hospital-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.04em;
+}
+
+.hospital-tagline {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 1px;
+}
+
+/* Nav links */
+.nav-links {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    height: 1px;
+    width: 0;
+    background: var(--accent);
+    transition: width 0.25s;
+}
+
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Header right — CTA + hamburger */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Hamburger */
+.hamburger-menu { position: relative; }
+
+.hamburger {
+    background: none;
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.hamburger:hover {
+    border-color: var(--accent);
+    background: var(--surface);
+}
+
+.hamburger-content {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    min-width: 200px;
+    box-shadow: 0 8px 32px rgba(44,40,38,0.1);
+    overflow: hidden;
+    flex-direction: column;
+    z-index: 2000;
+}
+
+.hamburger-content.active { display: flex; }
+
+.hamburger-content a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    padding: 13px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s, color 0.15s;
+}
+
+.hamburger-content a:last-child { border-bottom: none; }
+
+.hamburger-content a:hover {
+    background: var(--surface);
+    color: var(--accent);
+}
+
+.hamburger-content a i {
+    width: 16px;
+    text-align: center;
+    color: var(--gold);
+    font-size: 13px;
+}
+
+/* ── HERO ────────────────────────────────────────────────────────────────── */
+.hero {
+    margin-top: 0;
+    min-height: 85vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 100%);
+    overflow: hidden;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    gap: 24px;
+}
+
+.hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--text);
+}
+
+.tagline em {
+    font-style: italic;
+    color: var(--accent);
+}
+
+.hero-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 420px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.hero-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Soft gradient overlay on left edge of image */
+.hero-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--bg) 0%, transparent 30%);
+    z-index: 1;
+}
+
+/* ── SERVICE CARDS ───────────────────────────────────────────────────────── */
+.content {
+    padding: 80px 48px;
+    background: var(--bg);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--gold);
+}
+
+/* ── PROCEDURES SECTION ──────────────────────────────────────────────────── */
+.procedures-section {
+    padding: 80px 48px;
+    background: var(--surface);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.section-header .label-gold {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.15;
+}
+
+.procedures-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.procedures-scroll::-webkit-scrollbar { display: none; }
+
+.procedure-card {
+    flex: 0 0 260px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+}
+
+.procedure-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(44,40,38,0.1);
+}
+
+.procedure-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.procedure-card-body {
+    padding: 20px;
+}
+
+.procedure-card-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.procedure-card-body p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.procedure-arrow {
+    font-size: 18px;
+    color: var(--gold);
+    font-weight: 400;
+    transition: transform 0.2s;
+    display: inline-block;
+}
+
+.procedure-card:hover .procedure-arrow { transform: translateX(4px); }
+
+/* ── STATS STRIP ─────────────────────────────────────────────────────────── */
+.stats-strip {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0 48px;
+    position: relative;
+}
+
+.stat-item + .stat-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    height: 40px;
+    width: 1px;
+    background: var(--border);
+}
+
+.stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* ── TESTIMONIALS ────────────────────────────────────────────────────────── */
+.testimonials-section {
+    padding: 80px 48px;
+    background: var(--surface);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.testimonial-stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.testimonial-author {
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+}
+
+.testimonial-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.testimonial-procedure {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────── */
+footer {
+    background: var(--text); /* #2C2826 deep charcoal */
+    color: rgba(255,255,255,0.7);
+    padding: 64px 48px 0;
+    margin-bottom: 0;
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+}
+
+.footer-brand .footer-logo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.04em;
+}
+
+.footer-brand .footer-logo-tag {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 2px;
+    margin-bottom: 16px;
+}
+
+.footer-brand p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    max-width: 280px;
+}
+
+.footer-col h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-col ul li a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-col ul li a:hover { color: var(--accent); }
+
+.footer-col p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.footer-socials a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.footer-socials a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+}
+
+/* ── BOTTOM FIXED NAVBAR ─────────────────────────────────────────────────── */
+.navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 14px;
+    z-index: 1500;
+}
+
+.navbar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+
+.navbar a:hover,
+.navbar a.active { color: var(--accent); }
+
+.navbar a i {
+    font-size: 16px;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────────────────────────── */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0; right: 0;
+    background: #fff;
+    border-left: 1px solid var(--border);
+    overflow-x: hidden;
+    transition: width 0.3s ease;
+    padding-top: 72px;
+    z-index: 2000;
+    box-shadow: -4px 0 24px rgba(44,40,38,0.08);
+}
+
+.sidebar.active { width: 260px; }
+
+.sidebar a {
+    padding: 14px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s, color 0.15s;
+}
+
+.sidebar a:hover {
+    background: var(--surface);
+    color: var(--accent);
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .header { padding: 0 20px; }
+    .nav-links { display: none; }
+
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .hero-image {
+        height: 320px;
+        order: -1;
+    }
+
+    .hero-content {
+        padding: 48px 24px;
+    }
+
+    .content { padding: 48px 20px; }
+
+    .procedures-section,
+    .testimonials-section { padding: 60px 20px; }
+
+    .stats-strip { padding: 40px 20px; gap: 24px; }
+    .stat-item { padding: 16px 24px; }
+    .stat-item + .stat-item::before { display: none; }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    footer { padding: 48px 20px 0; }
+}
+
+@media (max-width: 560px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-content { padding: 36px 20px; }
+    .tagline { font-size: 40px; }
+}

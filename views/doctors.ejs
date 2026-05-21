@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Appointment — Bhoond Hospital</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/doctors.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="doc-header">
+        <div>
+            <div class="title">Book an Appointment</div>
+            <div class="subtitle">Find and book with experienced doctors — in-person or video consult</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+            <div class="tag">24/7 Emergency</div>
+            <button class="doc-btn ghost" onclick="window.location.href='/pages/contact.html'">
+                <i class="fa fa-phone"></i> Call Reception
+            </button>
+            <a href="/" class="doc-btn ghost"><i class="fa fa-arrow-left"></i> Home</a>
+            <% if (user) { %>
+                <span style="font-size:13px;color:#555;">Hi, <strong><%= user.name %></strong></span>
+            <% } else { %>
+                <a href="/pages/login.html" class="doc-btn ghost"><i class="fa fa-user"></i> Login</a>
+            <% } %>
+        </div>
+    </header>
+
+    <!-- Filters — submitted as GET query params so server filters the data -->
+    <form method="GET" action="/doctors" class="controls" role="region" aria-label="Search and filters">
+        <div class="search" style="min-width:240px;">
+            <i class="fa fa-search"></i>
+            <input name="search" id="search" type="search"
+                value="<%= filters.search %>"
+                placeholder="Search doctor, specialty or location" />
+        </div>
+
+        <select name="location" id="locationFilter" aria-label="Filter by location" onchange="this.form.submit()">
+            <option value="All" <%= filters.location === 'All' ? 'selected' : '' %>>All locations</option>
+            <% locations.forEach(loc => { %>
+                <option value="<%= loc %>" <%= filters.location === loc ? 'selected' : '' %>><%= loc %></option>
+            <% }) %>
+        </select>
+
+        <select name="specialty" id="specialtyFilter" aria-label="Filter by specialty" onchange="this.form.submit()">
+            <option value="All" <%= filters.specialty === 'All' ? 'selected' : '' %>>All specialties</option>
+            <% specialties.forEach(spec => { %>
+                <option value="<%= spec %>" <%= filters.specialty === spec ? 'selected' : '' %>><%= spec %></option>
+            <% }) %>
+        </select>
+
+        <button type="submit" class="doc-btn primary">Search</button>
+        <a href="/doctors" class="doc-btn ghost">Reset</a>
+    </form>
+
+    <!-- Doctor cards — rendered server-side by EJS -->
+    <section class="doctor-list" id="doctorList" aria-live="polite">
+        <% if (doctors.length === 0) { %>
+            <div style="padding:40px;text-align:center;color:#666;">
+                No doctors found for the selected filters.
+            </div>
+        <% } else { %>
+            <% doctors.forEach(d => { %>
+                <article class="doctor-card">
+                    <div class="doc-photo">
+                        <img src="<%= d.photo %>" alt="<%= d.name %>">
+                    </div>
+                    <div class="doc-main">
+                        <div class="doc-top">
+                            <div>
+                                <div class="doc-name"><%= d.name %></div>
+                                <div class="doc-special">
+                                    <%= d.specialty %> — <span class="small"><%= d.hospital %></span>
+                                </div>
+                                <div class="doc-meta" style="margin-top:8px;">
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i> <%= d.rating %>
+                                        <span class="small">(<%= d.reviews %>)</span>
+                                    </div>
+                                    <div class="small">• <%= d.experience %> yrs exp</div>
+                                    <div class="small">• Fees: ₹<%= d.fees.toLocaleString('en-IN') %></div>
+                                </div>
+                            </div>
+                            <div style="text-align:right">
+                                <div class="availability">
+                                    Next: <%= d.nextAvailable && d.nextAvailable[0] ? new Date(d.nextAvailable[0]).toLocaleString('en-IN', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }) : '—' %>
+                                </div>
+                                <div style="margin-top:10px"><span class="tag">In-clinic</span></div>
+                            </div>
+                        </div>
+                        <div class="doc-bottom">
+                            <button class="doc-btn" onclick="showProfile('<%= d._id %>')">
+                                <i class="fa fa-user"></i> View Profile
+                            </button>
+                            <button class="doc-btn book" onclick="startBooking('<%= d._id %>')">
+                                <i class="fa fa-calendar-check"></i> Book Appointment
+                            </button>
+                            <button class="doc-btn" onclick="startVideo('<%= d._id %>')">
+                                <i class="fa fa-video"></i> Video Consult
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            <% }) %>
+        <% } %>
+    </section>
+
+    <!-- Profile / booking modal -->
+    <div id="modalBackdrop" class="modal-backdrop" onclick="closeModal(event)">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+            onclick="event.stopPropagation()">
+            <button class="close" onclick="closeModal()">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Doctor data passed from server — used for modals
+        const doctors = <%- JSON.stringify(doctors) %>;
+
+        function formatCurrency(v) { return '₹' + v.toLocaleString('en-IN'); }
+        function friendlyDate(dt) {
+            if (!dt) return '—';
+            const date = new Date(dt.replace ? dt.replace(' ', 'T') : dt);
+            return date.toLocaleString('en-IN', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+        }
+
+        function showProfile(id) {
+            const d = doctors.find(x => String(x._id) === String(id));
+            if (!d) return;
+            openModal(`
+                <h2 id="modalTitle">${d.name} <small style="font-weight:600;color:var(--muted)"> — ${d.specialty}</small></h2>
+                <p class="small" style="margin-top:6px;">${d.hospital} • ${d.experience} years experience</p>
+                <hr />
+                <p><strong>About:</strong> ${d.name} is a senior ${d.specialty} specialist with extensive clinical experience.</p>
+                <p><strong>Location:</strong> ${d.location}</p>
+                <p><strong>Patient rating:</strong> <span class="rating"><i class="fa fa-star"></i> ${d.rating}</span> (${d.reviews} reviews)</p>
+                <div style="margin-top:12px;">
+                    <strong>Next available slots</strong>
+                    <div class="slots">
+                        ${(d.nextAvailable || []).map(s => `<div class="slot available" onclick="confirmSlot('${d._id}','${s}')">${friendlyDate(s)}</div>`).join('') || '<div class="small">No slots available</div>'}
+                    </div>
+                </div>
+                <div style="margin-top:16px;display:flex;gap:10px;">
+                    <button class="doc-btn book" onclick="startBooking('${d._id}')"><i class="fa fa-calendar-check"></i> Book</button>
+                    <button class="doc-btn" onclick="startVideo('${d._id}')"><i class="fa fa-video"></i> Video Consult</button>
+                </div>`);
+        }
+
+        function startBooking(id) {
+            const d = doctors.find(x => String(x._id) === String(id));
+            if (!d) return;
+            openModal(`
+                <h2 id="modalTitle">Book: ${d.name}</h2>
+                <p class="small">${d.specialty} • ${d.hospital}</p>
+                <hr />
+                <label style="display:block;margin-top:8px;">Select slot</label>
+                <div class="slots">
+                    ${(d.nextAvailable || []).map(s => `<div class="slot available" onclick="confirmSlot('${d._id}','${s}')">${friendlyDate(s)}</div>`).join('') || '<div class="small">No slots available</div>'}
+                </div>
+                <div style="margin-top:12px;">
+                    <label style="display:block;margin-bottom:6px;">Your name</label>
+                    <input id="patientName" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)" placeholder="Name" />
+                    <label style="display:block;margin:10px 0 6px;">Contact number</label>
+                    <input id="patientPhone" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)" placeholder="+91 9xxxxxxxxx" />
+                </div>
+                <div style="margin-top:14px;display:flex;gap:10px;">
+                    <button class="doc-btn book" onclick="confirmBooking('${d._id}')">Confirm & Pay ${formatCurrency(d.fees)}</button>
+                    <button class="doc-btn" onclick="closeModal()">Cancel</button>
+                </div>`);
+        }
+
+        function startVideo(id) {
+            const d = doctors.find(x => String(x._id) === String(id));
+            if (!d) return;
+            openModal(`
+                <h2 id="modalTitle">Video consult with ${d.name}</h2>
+                <p class="small">Choose a preferred time slot</p>
+                <div class="slots" style="margin-top:12px">
+                    ${(d.nextAvailable || []).map(s => `<div class="slot available" onclick="confirmSlot('${d._id}','${s}')">${friendlyDate(s)}</div>`).join('') || '<div class="small">No slots available</div>'}
+                </div>
+                <div style="margin-top:12px"><button class="doc-btn book" onclick="closeModal()">Request Video Consult</button></div>`);
+        }
+
+        function openModal(html) {
+            document.getElementById('modalContent').innerHTML = html;
+            document.getElementById('modalBackdrop').style.display = 'flex';
+        }
+        function closeModal(e) {
+            document.getElementById('modalBackdrop').style.display = 'none';
+        }
+        function confirmSlot(id, slot) {
+            const d = doctors.find(x => String(x._id) === String(id));
+            if (!d) return;
+            openModal(`
+                <h2>Confirm slot</h2>
+                <p class="small">Dr. ${d.name} — ${friendlyDate(slot)}</p>
+                <div style="margin-top:12px;display:flex;gap:10px;">
+                    <button class="doc-btn book" onclick="fakePayment('${id}','${slot}')">Confirm & Pay ${formatCurrency(d.fees)}</button>
+                    <button class="doc-btn" onclick="closeModal()">Cancel</button>
+                </div>`);
+        }
+        function fakePayment(id, slot) {
+            closeModal();
+            alert('Appointment confirmed! Confirmation sent to your email.');
+        }
+        function confirmBooking(id) {
+            const name = document.getElementById('patientName').value.trim();
+            const phone = document.getElementById('patientPhone').value.trim();
+            if (!name || !phone) return alert('Please enter name and contact number.');
+            closeModal();
+            alert('Booking request received. We will contact you to confirm.');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Procedure — Bhoond Aesthetic Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/procedure.css">
+</head>
+<body>
+
+    <!-- nav -->
+    <nav class="aura-nav">
+        <a href="../index.html" class="aura-nav-logo">
+            <span class="aura-nav-name">Bhoond</span>
+            <span class="aura-nav-tag">Aesthetic Clinic</span>
+        </a>
+        <div class="aura-nav-links">
+            <a href="../index.html#procedures">Procedures</a>
+            <a href="./doctors.html">Surgeons</a>
+            <a href="./gallery.html">Gallery</a>
+            <a href="./contact.html">Contact</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+            <a href="./login.html" class="aura-nav-signin">Sign In</a>
+            <a href="./doctors.html" class="aura-nav-cta">Book Consultation</a>
+        </div>
+    </nav>
+
+    <!-- hero -->
+    <section class="proc-hero" id="procHero" aria-label="Procedure hero">
+        <div class="proc-hero-overlay"></div>
+        <div class="proc-hero-content">
+            <div class="proc-breadcrumb">
+                <a href="../index.html">Home</a>
+                <span>›</span>
+                <a href="../index.html#procedures">Procedures</a>
+                <span>›</span>
+                <span id="breadcrumbName">—</span>
+            </div>
+            <span class="proc-subtitle-label" id="heroSubtitle"></span>
+            <h1 class="proc-hero-name" id="heroName"></h1>
+            <p class="proc-hero-tagline" id="heroTagline"></p>
+            <div class="proc-stats-row" id="heroStats"></div>
+            <div class="proc-hero-fee" id="heroFee"></div>
+            <div class="proc-hero-actions">
+                <a href="./doctors.html" class="btn">Book Consultation</a>
+                <a href="./contact.html" class="btn-outline">Ask a Question</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── OVERVIEW ── -->
+    <section class="proc-overview" aria-label="Procedure overview">
+        <div class="proc-overview-grid">
+            <div>
+                <span class="proc-section-label">About This Procedure</span>
+                <h2 class="proc-overview-heading" id="overviewHeading"></h2>
+                <p class="proc-overview-text" id="overviewText"></p>
+            </div>
+            <div>
+                <h3 class="proc-benefits-heading">Key Benefits</h3>
+                <ul class="proc-benefits-list" id="benefitsList"></ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── RECOVERY TIMELINE ── -->
+    <section class="proc-timeline" aria-label="Recovery timeline">
+        <div class="proc-timeline-inner">
+            <div class="proc-timeline-header">
+                <span class="proc-section-label">What to Expect</span>
+                <h2 class="proc-timeline-heading">Recovery Timeline</h2>
+            </div>
+            <div class="proc-timeline-cards" id="timelineCards"></div>
+        </div>
+    </section>
+
+    <!-- ── MEET YOUR SURGEONS ── -->
+    <section class="proc-surgeons" aria-label="Surgeons for this procedure">
+        <div class="proc-surgeons-inner">
+            <div class="proc-surgeons-header">
+                <span class="proc-section-label">Your Care Team</span>
+                <h2 class="proc-surgeons-heading">Meet Your Surgeons</h2>
+            </div>
+            <div class="proc-surgeons-grid" id="surgeonsGrid"></div>
+        </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="proc-faq" aria-label="Frequently asked questions">
+        <div class="proc-faq-inner">
+            <div class="proc-faq-header">
+                <span class="proc-section-label">Common Questions</span>
+                <h2 class="proc-faq-heading">Frequently Asked</h2>
+            </div>
+            <div id="faqList"></div>
+        </div>
+    </section>
+
+    <!-- ── RELATED PROCEDURES ── -->
+    <section class="proc-related" aria-label="Related procedures">
+        <div class="proc-related-inner">
+            <div class="proc-related-header">
+                <span class="proc-section-label">Explore More</span>
+                <h2 class="proc-related-heading">Related Procedures</h2>
+            </div>
+            <div class="proc-related-grid" id="relatedGrid"></div>
+        </div>
+    </section>
+
+    <!-- ── MOBILE STICKY CTA ── -->
+    <div class="proc-mobile-cta" aria-label="Book consultation">
+        <a href="./doctors.html" class="btn">Book Consultation</a>
+        <a href="./contact.html" class="btn-outline">Ask a Question</a>
+    </div>
+
+    <script>
+        // all procedure content
+        const procedures = {
+            rhinoplasty: { id:"rhinoplasty", name:"Rhinoplasty", subtitle:"The Art of the Perfect Nose", tagline:"Precision reshaping for natural, lasting beauty.", heroImage:"https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1400&fit=crop", duration:"2–3 hours", recovery:"10–14 days", anaesthesia:"General", startingFee:"₹1,20,000", overview:"Rhinoplasty at Bhoond reshapes the nose to bring it into harmony with your facial features. Whether correcting a dorsal hump, refining the tip, or improving breathing function, every procedure is planned with precision and executed with an artistic eye.", benefits:["Natural-looking, proportional results","Improved nasal breathing","Long-lasting outcomes","Minimal visible scarring","Customised to your facial structure"], recoveryTimeline:[{day:"Day 1–2",label:"Rest & monitoring at clinic"},{day:"Day 3–5",label:"Splint on, mild swelling normal"},{day:"Day 7",label:"Splint removal, presentable"},{day:"Week 3",label:"Back to work and light activity"},{day:"Month 3",label:"80% of swelling resolved"},{day:"Month 12",label:"Final result fully visible"}], faqs:[{q:"How long do results last?",a:"Rhinoplasty results are permanent. Once fully healed, the shape of your nose will remain stable for life."},{q:"Will there be visible scars?",a:"For closed rhinoplasty, all incisions are inside the nostrils — no external scarring. Open rhinoplasty leaves a very fine scar under the nose tip that fades within months."},{q:"Is it painful?",a:"Discomfort is well-managed with medication. Most patients describe the first two days as uncomfortable rather than painful."},{q:"Can I combine it with other procedures?",a:"Yes. Rhinoplasty is commonly combined with chin augmentation or eyelid surgery for full facial harmony."}], surgeons:["s1","s4"], relatedProcedures:["facelift","eyelid","contouring"] },
+            facelift: { id:"facelift", name:"Facelift", subtitle:"Turn Back Time, Naturally", tagline:"Restore volume and definition without losing yourself.", heroImage:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1400&fit=crop", duration:"3–5 hours", recovery:"14–21 days", anaesthesia:"General", startingFee:"₹1,80,000", overview:"A facelift at Bhoond addresses sagging skin, deep folds, and lost facial volume — restoring a refreshed, youthful contour while keeping your natural expressions fully intact. Our surgeons use advanced deep-plane techniques for results that last over a decade.", benefits:["10+ year lasting results","No frozen or unnatural look","Deep-plane technique for real lifting","Combined neck and jawline refinement","Minimal tell-tale signs of surgery"], recoveryTimeline:[{day:"Day 1–3",label:"Rest, head elevated, cold compresses"},{day:"Day 5",label:"Drains removed if used"},{day:"Day 10",label:"Sutures removed, bruising fading"},{day:"Week 3",label:"Presentable, light activity okay"},{day:"Month 2",label:"Near-final result visible"},{day:"Month 6",label:"Full, settled result"}], faqs:[{q:"What age is appropriate?",a:"Most facelift patients are between 45–70, but suitability depends on skin laxity and bone structure rather than age alone."},{q:"How long do results last?",a:"Deep-plane facelifts typically last 10–15 years. You will continue to age naturally but always look more refreshed than if you hadn't had the procedure."},{q:"What is the difference between a mini and full facelift?",a:"A mini facelift addresses early laxity with smaller incisions and faster recovery. A full facelift treats more significant sagging with longer-lasting results."}], surgeons:["s2"], relatedProcedures:["rhinoplasty","eyelid","contouring"] },
+            eyelid: { id:"eyelid", name:"Eyelid Surgery", subtitle:"Open, Bright, Awake", tagline:"Subtle refinement with transformative impact.", heroImage:"https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=1400&fit=crop", duration:"1–2 hours", recovery:"7–10 days", anaesthesia:"Local + Sedation", startingFee:"₹65,000", overview:"Blepharoplasty removes excess skin and fat from the upper and/or lower eyelids, making eyes appear more open, rested, and youthful. It is one of the most popular and lowest-downtime procedures we offer.", benefits:["Dramatically refreshed eye appearance","Can improve peripheral vision","Quick recovery","Natural crease creation for Asian eyelids","Combinable with brow lift"], recoveryTimeline:[{day:"Day 1–2",label:"Cool compresses, rest"},{day:"Day 5",label:"Sutures removed"},{day:"Day 7",label:"Presentable with light makeup"},{day:"Week 2",label:"Return to work"},{day:"Month 1",label:"Final result visible"}], faqs:[{q:"Upper, lower, or both?",a:"Upper eyelid surgery addresses hooding and excess skin. Lower eyelid surgery targets under-eye bags and puffiness. Both can be done in the same session."},{q:"Will the scar be visible?",a:"Incisions are hidden in the natural eyelid crease or just below the lash line — virtually invisible once healed."}], surgeons:["s3"], relatedProcedures:["facelift","rhinoplasty"] },
+            contouring: { id:"contouring", name:"Facial Contouring", subtitle:"Define Your Silhouette", tagline:"Bone-level refinement for a sculpted, elegant face.", heroImage:"https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=1400&fit=crop", duration:"3–4 hours", recovery:"3–6 weeks", anaesthesia:"General", startingFee:"₹2,20,000", overview:"Facial contouring surgery addresses the underlying bone structure of the face — slimming the jaw, repositioning cheekbones, or refining the chin — to create a balanced, defined silhouette. Popular for V-line and Korean aesthetic results.", benefits:["Permanent structural change","V-line and oval face shaping","No implants required","Simultaneous jaw + cheek work possible","Dramatic but natural-looking result"], recoveryTimeline:[{day:"Day 1–3",label:"Clinic stay, liquid diet"},{day:"Week 1",label:"Significant swelling, soft foods"},{day:"Week 3",label:"Most swelling down, presentable"},{day:"Month 2",label:"Back to full activity"},{day:"Month 6",label:"Final bone contour visible"}], faqs:[{q:"Is this the same as V-line surgery?",a:"V-line surgery is a type of facial contouring that slims the jawbone and chin to create a tapered, elegant lower face. It is one of our most requested procedures."},{q:"How long is the recovery?",a:"Bone contouring has a longer recovery than soft-tissue surgeries. Expect significant swelling for 2–3 weeks and a gradual reveal over 6 months."}], surgeons:["s4"], relatedProcedures:["facelift","rhinoplasty"] },
+            revision: { id:"revision", name:"Revision Surgery", subtitle:"Correct. Refine. Complete.", tagline:"Expert correction for unsatisfactory prior results.", heroImage:"https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1400&fit=crop", duration:"2–5 hours", recovery:"14–21 days", anaesthesia:"General", startingFee:"₹1,50,000", overview:"Revision surgery corrects unsatisfactory results from previous procedures performed elsewhere. Whether addressing asymmetry, implant complications, or insufficient results — our surgeons approach every revision with exceptional care and technical precision.", benefits:["Specialists in complex revisions","Honest, thorough pre-op assessment","Corrects asymmetry and implant issues","Restores natural anatomy","Confidential and judgment-free"], recoveryTimeline:[{day:"Day 1–3",label:"Rest and monitoring"},{day:"Week 1",label:"Initial healing, follow-up"},{day:"Week 2–3",label:"Suture removal, swelling subsides"},{day:"Month 2",label:"Result becoming clear"},{day:"Month 6–12",label:"Full settled result"}], faqs:[{q:"Can any prior surgery be revised?",a:"Most can, though complexity varies. A thorough consultation with imaging review is required before any revision is planned."},{q:"Is revision more risky?",a:"Revision surgery is more technically demanding than primary surgery due to scar tissue. Our surgeons specialise specifically in complex revisions."}], surgeons:["s5"], relatedProcedures:["rhinoplasty","facelift"] }
+        };
+
+        // surgeon data
+        const surgeons = [
+            { id:"s1", name:"Dr. Gurjoban Singh",              specialty:"Rhinoplasty & Facial Contouring",    credentials:"M.Ch Plastic Surgery · 18 yrs",       photo:"/images/Gurjoban.jpeg" },
+            { id:"s2", name:"Dr. Aman Sharma",                 specialty:"Facelift & Anti-Aging Surgery",      credentials:"DNB Plastic Surgery · 22 yrs",         photo:"/images/aman.jpeg" },
+            { id:"s3", name:"Dr. Gurinder Singh (Java Expert)",specialty:"Eyelid Surgery & Orbital Aesthetics",credentials:"MS Ophthalmology · 14 yrs",            photo:"/images/Gurinder.jpeg" },
+            { id:"s4", name:"Dr. Gulati",                      specialty:"Facial Bone Contouring",             credentials:"M.Ch Craniofacial Surgery · 20 yrs",   photo:"/images/Gurjoban.jpeg" },
+            { id:"s5", name:"Dr. Hansraaj Haathi",             specialty:"Revision & Reconstructive Surgery",  credentials:"M.Ch Plastic Surgery · 16 yrs",        photo:"/images/aman.jpeg" }
+        ];
+
+        // load procedure from URL and populate page
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const proc = procedures[id];
+
+            if (!proc) {
+                window.location.href = '../index.html';
+                return;
+            }
+
+            // Page title
+            document.title = proc.name + ' — Bhoond Aesthetic Clinic';
+
+            // Hero
+            document.getElementById('procHero').style.backgroundImage = `url('${proc.heroImage}')`;
+            document.getElementById('breadcrumbName').textContent = proc.name;
+            document.getElementById('heroSubtitle').textContent = proc.subtitle;
+            document.getElementById('heroName').textContent = proc.name;
+            document.getElementById('heroTagline').textContent = proc.tagline;
+
+            // Stats pills
+            const statsEl = document.getElementById('heroStats');
+            const stats = [
+                { label: 'Duration', value: proc.duration },
+                { label: 'Recovery', value: proc.recovery },
+                { label: 'Anaesthesia', value: proc.anaesthesia }
+            ];
+            statsEl.innerHTML = stats.map(s =>
+                `<div class="proc-stat-pill"><strong>${s.label}</strong> ${s.value}</div>`
+            ).join('');
+
+            // Fee
+            document.getElementById('heroFee').innerHTML =
+                `Starting from <span>${proc.startingFee}</span>`;
+
+            // Overview
+            document.getElementById('overviewHeading').textContent = proc.name;
+            document.getElementById('overviewText').textContent = proc.overview;
+
+            // Benefits
+            const benefitsEl = document.getElementById('benefitsList');
+            benefitsEl.innerHTML = proc.benefits.map(b => `<li>${b}</li>`).join('');
+
+            // Timeline
+            const timelineEl = document.getElementById('timelineCards');
+            timelineEl.innerHTML = proc.recoveryTimeline.map(t =>
+                `<div class="proc-timeline-card">
+                    <div class="proc-timeline-day">${t.day}</div>
+                    <div class="proc-timeline-label">${t.label}</div>
+                </div>`
+            ).join('');
+
+            // Surgeons
+            const surgeonsEl = document.getElementById('surgeonsGrid');
+            const procSurgeons = surgeons.filter(s => proc.surgeons.includes(s.id));
+            surgeonsEl.innerHTML = procSurgeons.map(s =>
+                `<div class="proc-surgeon-card">
+                    <img class="proc-surgeon-photo" src="${s.photo}" alt="${s.name}" loading="lazy">
+                    <div class="proc-surgeon-name">${s.name}</div>
+                    <div class="proc-surgeon-specialty">${s.specialty}</div>
+                    <div class="proc-surgeon-creds">${s.credentials}</div>
+                </div>`
+            ).join('');
+
+            // FAQ
+            const faqEl = document.getElementById('faqList');
+            faqEl.innerHTML = proc.faqs.map((f, i) =>
+                `<div class="proc-faq-item" id="faq-${i}">
+                    <button class="proc-faq-question" onclick="toggleFaq(${i})" aria-expanded="false" aria-controls="faq-answer-${i}">
+                        <span>${f.q}</span>
+                        <span class="proc-faq-icon">+</span>
+                    </button>
+                    <div class="proc-faq-answer" id="faq-answer-${i}" role="region">
+                        <p>${f.a}</p>
+                    </div>
+                </div>`
+            ).join('');
+
+            // Related procedures
+            const relatedEl = document.getElementById('relatedGrid');
+            relatedEl.innerHTML = proc.relatedProcedures.map(rid => {
+                const rp = procedures[rid];
+                if (!rp) return '';
+                return `<a href="procedure.html?id=${rp.id}" class="proc-related-card">
+                    <div class="proc-related-card-name">${rp.name}</div>
+                    <div class="proc-related-card-sub">${rp.tagline}</div>
+                    <span class="proc-related-arrow">→</span>
+                </a>`;
+            }).join('');
+        });
+
+        // open and close FAQ items
+        function toggleFaq(index) {
+            const item = document.getElementById('faq-' + index);
+            const btn = item.querySelector('.proc-faq-question');
+            const isOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.proc-faq-item.open').forEach(el => {
+                el.classList.remove('open');
+                el.querySelector('.proc-faq-question').setAttribute('aria-expanded', 'false');
+            });
+            // Open clicked if it was closed
+            if (!isOpen) {
+                item.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        }
+    </script>
+
+</body>
+</html>

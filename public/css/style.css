@@ -1,0 +1,153 @@
+/* ============================================
+   GLOBAL / SHARED STYLES — Aura Aesthetic Clinic
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Design tokens ───────────────────────────────────────────────────────── */
+:root {
+    --bg:         #FAF8F5;
+    --surface:    #F2EDE8;
+    --accent:     #D4A5A0;
+    --gold:       #C9A96E;
+    --text:       #2C2826;
+    --text-muted: #7A6E6A;
+    --border:     #E8E0D8;
+}
+
+/* ── Reset & base ────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a { text-decoration: none; color: inherit; }
+
+img { display: block; max-width: 100%; }
+
+/* ── Typography helpers ──────────────────────────────────────────────────── */
+.serif        { font-family: 'Cormorant Garamond', serif; }
+.label-gold   {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+/* ── Shared button ───────────────────────────────────────────────────────── */
+.btn {
+    display: inline-block;
+    padding: 13px 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.02em;
+}
+
+.btn:hover {
+    background: #c49490;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 165, 160, 0.3);
+}
+
+.btn:active { transform: translateY(0); }
+
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    border-radius: 50px;
+    padding: 11px 26px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ── Shared card ─────────────────────────────────────────────────────────── */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.25s, box-shadow 0.25s, border-left 0.25s;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(44, 40, 38, 0.08);
+    border-left-color: var(--accent);
+}
+
+.card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ── SHARED NAV ── */
+.aura-nav {
+    position: sticky; top: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 68px;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+}
+.aura-nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+.aura-nav-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: var(--text); }
+.aura-nav-tag  { font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+.aura-nav-links { display: flex; gap: 32px; }
+.aura-nav-links a { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.aura-nav-links a:hover { color: var(--text); }
+.aura-nav-cta {
+    padding: 10px 22px; background: var(--accent); color: #fff;
+    border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 13px;
+    font-weight: 500; text-decoration: none; transition: background 0.2s;
+}
+.aura-nav-cta:hover { background: #c49490; }
+.aura-nav-signin {
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-muted);
+    text-decoration: none; transition: color 0.2s;
+}
+.aura-nav-signin:hover { color: var(--text); }
+@media (max-width: 768px) {
+    .aura-nav { padding: 0 20px; }
+    .aura-nav-links { display: none; }
+}

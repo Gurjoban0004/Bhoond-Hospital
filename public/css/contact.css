@@ -1,0 +1,421 @@
+/* ============================================
+   CONTACT PAGE — Aura Aesthetic Clinic
+   ============================================ */
+
+body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 48px 80px;
+}
+
+/* ── BACK BUTTON ─────────────────────────────────────────────────────────── */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    padding: 9px 18px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 40px;
+}
+
+.back-btn:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 165, 160, 0.15);
+}
+
+/* ── PAGE HERO ───────────────────────────────────────────────────────────── */
+.contact-hero {
+    padding: 0 0 40px;
+}
+
+.hero-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.contact-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 5vw, 52px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.1;
+    margin: 0 0 14px;
+}
+
+.contact-hero .hero-sub {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 520px;
+    margin-bottom: 24px;
+}
+
+.quick {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.quick a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.quick a:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(212, 165, 160, 0.12);
+}
+
+.quick a i {
+    color: var(--gold);
+    font-size: 13px;
+}
+
+/* ── CONTACT GRID ────────────────────────────────────────────────────────── */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+/* ── CONTACT CARD (shared) ───────────────────────────────────────────────── */
+.contact-card {
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 28px;
+}
+
+.contact-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 20px;
+}
+
+/* ── INFO CARD ───────────────────────────────────────────────────────────── */
+.contact-info {
+    background: var(--surface);
+}
+
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.info-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+    font-size: 14px;
+}
+
+.info-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-top: 8px;
+}
+
+.info-text a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.info-text a:hover { color: var(--accent); }
+
+/* Small feature card */
+.small-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    margin-top: 8px;
+}
+
+.small-card i {
+    color: var(--gold);
+    font-size: 18px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.small-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.small-card-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* Socials */
+.socials-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    margin: 20px 0 10px;
+    display: block;
+}
+
+.socials {
+    display: flex;
+    gap: 8px;
+}
+
+.socials a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.socials a:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+/* ── RIGHT RAIL ──────────────────────────────────────────────────────────── */
+.right-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 24px;
+}
+
+/* ── FORM CARD ───────────────────────────────────────────────────────────── */
+.contact-form {
+    background: #fff;
+}
+
+.contact-form h2 {
+    font-size: 26px;
+}
+
+/* Form layout */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+/* Submit button */
+.contact-form button[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    border-radius: 999px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin-top: 4px;
+}
+
+.contact-form button[type="submit"]:hover {
+    background: #c49490;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 165, 160, 0.3);
+}
+
+.contact-form button[type="submit"]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Form message */
+.form-message {
+    display: none;
+    margin-top: 12px;
+    padding: 11px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.form-message.success {
+    background: var(--surface);
+    color: var(--gold);
+    border-color: var(--border);
+}
+
+.form-message.error {
+    background: rgba(212, 165, 160, 0.12);
+    color: var(--accent);
+    border-color: rgba(212, 165, 160, 0.3);
+}
+
+/* ── MAP CARD ────────────────────────────────────────────────────────────── */
+.map-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.map-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 14px;
+}
+
+.map {
+    border-radius: 12px;
+    overflow: hidden;
+    height: 240px;
+    border: 1px solid var(--border);
+}
+
+.map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+.map-address {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .container { padding: 24px 20px 60px; }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .right-rail { position: static; }
+
+    .form-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .quick { flex-direction: column; }
+    .contact-hero h1 { font-size: 36px; }
+}

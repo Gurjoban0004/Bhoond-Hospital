@@ -1,0 +1,534 @@
+/* ============================================
+   SURGEONS PAGE — Aura Aesthetic Clinic
+   doctors.html
+   ============================================ */
+
+/* ── Page base ───────────────────────────────────────────────────────────── */
+body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+}
+
+/* ── PAGE HEADER ─────────────────────────────────────────────────────────── */
+.doc-header {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.doc-header-left .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+}
+
+.doc-header-left .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.1;
+}
+
+.doc-header-left .subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.doc-header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.consult-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--gold);
+}
+
+/* ── CONTROLS / FILTERS ──────────────────────────────────────────────────── */
+.controls {
+    display: flex;
+    gap: 12px;
+    padding: 18px 48px;
+    align-items: center;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+/* Search */
+.controls .search {
+    flex: 1 1 280px;
+    position: relative;
+}
+
+.controls input[type="search"] {
+    width: 100%;
+    padding: 11px 16px 11px 42px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.controls input[type="search"]::placeholder { color: var(--text-muted); }
+
+.controls input[type="search"]:focus {
+    border-color: var(--accent);
+}
+
+.controls .fa-search {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    font-size: 13px;
+    pointer-events: none;
+}
+
+/* Dropdowns */
+.controls select {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A6E6A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+
+.controls select:focus { border-color: var(--accent); }
+
+/* Reset button */
+.doc-btn.reset {
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1.5px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.doc-btn.reset:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* ── SURGEON LIST ────────────────────────────────────────────────────────── */
+.doctor-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    padding: 32px 48px 80px;
+    max-width: 1280px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+/* ── SURGEON CARD ────────────────────────────────────────────────────────── */
+.doctor-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.doctor-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 32px rgba(212, 165, 160, 0.15);
+}
+
+/* Card top row: photo + info */
+.doc-top {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+/* Circular photo */
+.doc-photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid var(--border);
+    background: var(--surface);
+}
+
+.doc-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.doc-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.doc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 3px;
+}
+
+.doc-special {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+/* Credentials badge */
+.credentials-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--surface);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Rating row */
+.doc-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.rating .star { color: var(--gold); }
+
+.rating .review-count {
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+/* Procedures tags */
+.procedures-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.proc-tag {
+    padding: 3px 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Availability + fees row */
+.doc-footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.availability {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.fees {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Card action buttons */
+.doc-bottom {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.doc-btn {
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--text);
+}
+
+.doc-btn:hover {
+    background: var(--surface);
+    border-color: var(--text-muted);
+}
+
+/* Filled accent button */
+.doc-btn.book {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.doc-btn.book:hover {
+    background: #c49490;
+    border-color: #c49490;
+    transform: translateY(-1px);
+}
+
+/* Ghost / back button */
+.doc-btn.ghost {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text);
+}
+
+.doc-btn.ghost:hover {
+    background: var(--surface);
+    border-color: var(--text-muted);
+}
+
+.inclinic-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
+/* ── MODAL ───────────────────────────────────────────────────────────────── */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(44, 40, 38, 0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    padding: 20px;
+}
+
+.modal {
+    background: var(--bg);
+    width: 100%;
+    max-width: 680px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    padding: 32px;
+    box-shadow: 0 24px 64px rgba(44, 40, 38, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal .close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 22px;
+    line-height: 1;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.modal .close:hover { color: var(--text); }
+
+/* Modal typography */
+.modal-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+
+.modal-specialty {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.modal-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+}
+
+.modal-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Slots */
+.slots {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.slot {
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    font-size: 13px;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.slot:hover {
+    border-color: var(--accent);
+    background: #fff;
+}
+
+.slot.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+/* Booking form inputs */
+.modal-input {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    margin-top: 6px;
+}
+
+.modal-input::placeholder { color: var(--text-muted); }
+.modal-input:focus { border-color: var(--accent); }
+
+.modal-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 14px;
+    margin-bottom: 2px;
+}
+
+/* Modal action row */
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .doc-header { padding: 18px 20px; }
+    .doc-header-left .title { font-size: 26px; }
+    .consult-note { display: none; }
+
+    .controls { padding: 14px 20px; }
+
+    .doctor-list { padding: 20px 16px 80px; }
+
+    .doc-top { flex-direction: row; }
+
+    .doc-photo {
+        width: 72px;
+        height: 72px;
+    }
+}
+
+@media (max-width: 480px) {
+    .doc-header-right { gap: 10px; }
+    .doc-bottom { flex-direction: column; align-items: stretch; }
+    .doc-btn { justify-content: center; }
+}

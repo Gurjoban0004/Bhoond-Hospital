@@ -1,0 +1,254 @@
+/* ============================================
+   GALLERY PAGE — Aura Aesthetic Clinic
+   ============================================ */
+
+/* ── HERO ────────────────────────────────────────────────────────────────── */
+.gallery-hero {
+    background: var(--surface);
+    padding: 80px 64px 64px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.gallery-hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 14px;
+}
+
+.gallery-hero-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 16px;
+}
+
+.gallery-hero-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* ── FILTER PILLS ────────────────────────────────────────────────────────── */
+.gallery-filters {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gallery-filter-pill {
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.gallery-filter-pill:hover {
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.gallery-filter-pill.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+/* ── GRID ────────────────────────────────────────────────────────────────── */
+.gallery-section {
+    padding: 64px 48px;
+    background: var(--bg);
+}
+
+.gallery-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* ── CARD ────────────────────────────────────────────────────────────────── */
+.gallery-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(44,40,38,0.1);
+}
+
+/* Image area */
+.gallery-card-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    height: 200px;
+}
+
+.gallery-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Before/After labels */
+.gallery-img-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-img-label {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(250,248,245,0.9);
+}
+
+.gallery-img-label.before { color: var(--text-muted); }
+.gallery-img-label.after  { color: var(--gold); }
+
+/* Divider */
+.gallery-divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    background: var(--border);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-divider-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--border);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: var(--text-muted);
+}
+
+/* Card body */
+.gallery-card-body {
+    padding: 16px 18px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.gallery-card-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.gallery-proc-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    width: fit-content;
+}
+
+.gallery-card-demo {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.gallery-card-surgeon {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+    font-style: italic;
+}
+
+/* ── BOTTOM CTA ──────────────────────────────────────────────────────────── */
+.gallery-cta {
+    background: var(--surface);
+    padding: 80px 48px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.gallery-cta-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 40px);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 16px;
+}
+
+.gallery-cta-sub {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.gallery-cta-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .gallery-hero { padding: 60px 24px 48px; }
+    .gallery-section { padding: 48px 20px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .gallery-cta { padding: 60px 24px; }
+}
+
+@media (max-width: 560px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-card-images { height: 160px; }
+}

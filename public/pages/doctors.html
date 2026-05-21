@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Surgeons — Bhoond Aesthetic Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/doctors.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* booking wizard styles */
+        .bk-progress-bar {
+            height: 3px;
+            background: var(--border);
+            border-radius: 999px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .bk-progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 999px;
+            transition: width 0.35s ease;
+        }
+
+        .bk-steps {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .bk-step-pill {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .bk-step-pill.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .bk-step-pill.done {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
+        }
+
+        .bk-step-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .bk-surgeon-context {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .bk-surgeon-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .bk-surgeon-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .bk-surgeon-spec {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .bk-steps-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bk-step-panel {
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .bk-proc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .bk-proc-card {
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .bk-proc-card:hover {
+            border-color: var(--accent);
+            background: rgba(212, 165, 160, 0.05);
+        }
+
+        .bk-proc-card.selected {
+            border-color: var(--accent);
+            background: rgba(212, 165, 160, 0.1);
+        }
+
+        .bk-proc-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .bk-proc-fee {
+            font-size: 12px;
+            color: var(--gold);
+        }
+
+        .bk-slots-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .bk-slot-pill {
+            padding: 9px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 999px;
+            font-size: 13px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .bk-slot-pill:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .bk-slot-pill.selected {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .bk-nav {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+
+        .bk-summary {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .bk-summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            gap: 12px;
+        }
+
+        .bk-summary-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .bk-summary-key {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .bk-summary-val {
+            font-size: 13px;
+            color: var(--text);
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .bk-summary-fee {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--gold);
+            text-align: center;
+            padding: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .bk-confirm-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- nav -->
+    <nav class="aura-nav">
+        <a href="../index.html" class="aura-nav-logo">
+            <span class="aura-nav-name">Bhoond</span>
+            <span class="aura-nav-tag">Aesthetic Clinic</span>
+        </a>
+        <div class="aura-nav-links">
+            <a href="../index.html#procedures">Procedures</a>
+            <a href="./doctors.html">Surgeons</a>
+            <a href="./gallery.html">Gallery</a>
+            <a href="./contact.html">Contact</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+            <a href="./login.html" class="aura-nav-signin">Sign In</a>
+            <a href="./doctors.html" class="aura-nav-cta">Book Consultation</a>
+        </div>
+    </nav>
+
+    <!-- page header -->
+    <header class="doc-header">
+        <div class="doc-header-left">
+            <div class="eyebrow">Bhoond Aesthetic Clinic</div>
+            <div class="title">Our Surgeons</div>
+            <div class="subtitle">Board-certified specialists. Personalised care.</div>
+        </div>
+        <div class="doc-header-right">
+            <span class="consult-note">✦ Free Consultation Available</span>
+            <a href="../index.html" class="doc-btn ghost">
+                <i class="fa fa-arrow-left"></i> Home
+            </a>
+        </div>
+    </header>
+
+    <!-- search and filters -->
+    <div class="controls" role="region" aria-label="Search and filters">
+        <div class="search">
+            <i class="fa fa-search"></i>
+            <input id="search" type="search" placeholder="Search surgeon, procedure or location…" />
+        </div>
+
+        <select id="locationFilter" aria-label="Filter by location">
+            <option value="All">All locations</option>
+            <option>Delhi</option>
+            <option>Mumbai</option>
+            <option>Bangalore</option>
+            <option>Chennai</option>
+        </select>
+
+        <select id="specialtyFilter" aria-label="Filter by procedure">
+            <option value="All">All procedures</option>
+            <option>Rhinoplasty</option>
+            <option>Facelift</option>
+            <option>Eyelid Surgery</option>
+            <option>Facial Contouring</option>
+            <option>Revision Surgery</option>
+        </select>
+
+        <select id="sortBy" aria-label="Sort surgeons">
+            <option value="best">Sort: Best match</option>
+            <option value="rating">Rating: High to low</option>
+            <option value="experience">Experience: High to low</option>
+            <option value="fees">Fees: Low to high</option>
+        </select>
+
+        <button class="doc-btn reset" onclick="resetFilters()">Reset</button>
+    </div>
+
+    <!-- surgeon cards -->
+    <section class="doctor-list" id="doctorList" aria-live="polite" aria-label="Surgeon listings">
+        <!-- rendered by JS -->
+    </section>
+
+    <!-- booking modal -->
+    <div id="modalBackdrop" class="modal-backdrop" onclick="closeModal(event)">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+            onclick="event.stopPropagation()">
+            <button class="close" onclick="closeModal()" aria-label="Close">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // surgeon data
+        const surgeons = [
+            {
+                id: "s1",
+                name: "Dr. Gurjoban Singh",
+                specialty: "Rhinoplasty & Facial Contouring",
+                credentials: "M.Ch Plastic Surgery · 18 yrs",
+                hospital: "Bhoond Aesthetic Clinic, Delhi",
+                fees: 3500,
+                rating: 4.9,
+                reviews: 834,
+                photo: "/images/Gurjoban.jpeg",
+                procedures: ["Rhinoplasty", "Septoplasty", "Revision Rhinoplasty"],
+                nextAvailable: ["2025-10-24 10:00", "2025-10-24 14:30", "2025-10-25 11:00"]
+            },
+            {
+                id: "s2",
+                name: "Dr. Aman Sharma",
+                specialty: "Facelift & Anti-Aging Surgery",
+                credentials: "DNB Plastic Surgery · 22 yrs",
+                hospital: "Bhoond Aesthetic Clinic, Mumbai",
+                experience: 22,
+                fees: 4200,
+                rating: 4.8,
+                reviews: 612,
+                photo: "/images/aman.jpeg",
+                procedures: ["Facelift", "Brow Lift", "Neck Lift"],
+                nextAvailable: ["2025-10-25 09:30", "2025-10-26 15:00"]
+            },
+            {
+                id: "s3",
+                name: "Dr. Gurinder Singh",
+                specialty: "Eyelid Surgery & Orbital Aesthetics",
+                credentials: "MS Ophthalmology · 14 yrs",
+                hospital: "Bhoond Aesthetic Clinic, Bangalore",
+                experience: 14,
+                fees: 2800,
+                rating: 4.7,
+                reviews: 490,
+                photo: "/images/Gurinder.jpeg",
+                procedures: ["Double Eyelid", "Java", "Under-eye Rejuvenation"],
+                nextAvailable: ["2025-10-23 13:00", "2025-10-24 10:00", "2025-10-25 16:30"]
+            },
+            {
+                id: "s4",
+                name: "Dr. Mashoor Gulati",
+                specialty: "Facial Bone Contouring",
+                credentials: "M.Ch Craniofacial Surgery · 20 yrs",
+                hospital: "Bhoond Aesthetic Clinic, Delhi",
+                experience: 20,
+                fees: 5000,
+                rating: 4.9,
+                reviews: 720,
+                photo: "/images/gulati.jpeg",
+                procedures: ["V-Line Surgery", "Cheekbone Reduction", "Jaw Contouring"],
+                nextAvailable: ["2025-10-26 09:00", "2025-10-27 11:30"]
+            },
+            {
+                id: "s5",
+                name: "Dr. Paatha Haathi",
+                specialty: "Revision & Reconstructive Surgery",
+                credentials: "M.Ch Plastic Surgery · 16 yrs",
+                hospital: "Bhoond Aesthetic Clinic, Chennai",
+                experience: 16,
+                fees: 3800,
+                rating: 4.8,
+                reviews: 380,
+                photo: "/images/haathi.jpeg",
+                procedures: ["Revision Rhinoplasty", "Scar Revision", "Implant Removal"],
+                nextAvailable: ["2025-10-24 09:00", "2025-10-24 16:00", "2025-10-28 10:00"]
+            }
+        ];
+
+        // helpers
+        const listEl = document.getElementById('doctorList');
+        const searchEl = document.getElementById('search');
+        const locFilter = document.getElementById('locationFilter');
+        const specFilter = document.getElementById('specialtyFilter');
+        const sortByEl = document.getElementById('sortBy');
+
+        function formatCurrency(v) {
+            return '₹' + v.toLocaleString('en-IN');
+        }
+
+        function friendlyDate(dt) {
+            if (!dt) return '—';
+            const date = new Date(dt.replace(' ', 'T'));
+            return date.toLocaleString('en-IN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        }
+
+        // build and render surgeon cards
+        function renderSurgeons(items) {
+            listEl.innerHTML = '';
+            if (!items || items.length === 0) {
+                listEl.innerHTML = '<div class="no-results">No surgeons found for the selected filters.</div>';
+                return;
+            }
+
+            items.forEach(d => {
+                const procTags = (d.procedures || []).slice(0, 3)
+                    .map(p => `<span class="proc-tag">${p}</span>`).join('');
+
+                const card = document.createElement('article');
+                card.className = 'doctor-card';
+                card.innerHTML = `
+                    <div class="doc-top">
+                        <div class="doc-photo">
+                            <img src="${d.photo}" alt="${d.name}" loading="lazy">
+                        </div>
+                        <div class="doc-info">
+                            <div class="doc-name">${d.name}</div>
+                            <div class="doc-special">${d.specialty}</div>
+                            <span class="credentials-badge">${d.credentials}</span>
+                            <div class="doc-meta">
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    ${d.rating}
+                                    <span class="review-count">(${d.reviews})</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="procedures-tags">${procTags}</div>
+
+                    <div class="doc-footer-info">
+                        <div class="availability">Next: ${friendlyDate(d.nextAvailable && d.nextAvailable[0])}</div>
+                        <div class="fees">Consultation: ${formatCurrency(d.fees)}</div>
+                    </div>
+
+                    <div class="doc-bottom">
+                        <button class="doc-btn" onclick="showProfile('${d.id}')">
+                            View Profile
+                        </button>
+                        <button class="doc-btn book" onclick="startBooking('${d.id}')">
+                            Book Consultation
+                        </button>
+                        <span class="inclinic-label">• In-clinic only</span>
+                    </div>
+                `;
+                listEl.appendChild(card);
+            });
+        }
+
+        // show surgeon profile in modal
+        function showProfile(id) {
+            const d = surgeons.find(x => x.id === id);
+            if (!d) return;
+
+            const procTags = (d.procedures || [])
+                .map(p => `<span class="proc-tag">${p}</span>`).join('');
+
+            const slotHtml = (d.nextAvailable || []).length
+                ? d.nextAvailable.map(s =>
+                    `<div class="slot" onclick="selectSlot(this, '${d.id}', '${s}')">${friendlyDate(s)}</div>`
+                ).join('')
+                : '<span style="font-size:13px;color:var(--text-muted)">No slots available</span>';
+
+            openModal(`
+                <div class="modal-name" id="modalTitle">${d.name}</div>
+                <div class="modal-specialty">${d.specialty} &nbsp;·&nbsp; ${d.hospital}</div>
+
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+                    <span class="credentials-badge">${d.credentials}</span>
+                    <div class="rating" style="font-size:13px;">
+                        <span class="star">★</span> ${d.rating}
+                        <span class="review-count">(${d.reviews} reviews)</span>
+                    </div>
+                </div>
+
+                <div class="modal-divider" style="border:none;border-top:1px solid var(--border);margin:0 0 20px;"></div>
+
+                <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">
+                    ${d.name} is a board-certified specialist in ${d.specialty.split('&')[0].trim()} with ${d.experience} years of clinical experience. Known for natural-looking results and a patient-first approach.
+                </p>
+
+                <span class="modal-section-label">Procedures Offered</span>
+                <div class="procedures-tags" style="margin-bottom:20px;">${procTags}</div>
+
+                <div class="modal-divider" style="border:none;border-top:1px solid var(--border);margin:0 0 20px;"></div>
+
+                <span class="modal-section-label">Select Your Preferred Time</span>
+                <div class="slots">${slotHtml}</div>
+
+                <div class="modal-actions">
+                    <button class="doc-btn book" onclick="startBooking('${d.id}')">Book Consultation</button>
+                    <button class="doc-btn ghost" onclick="closeModal()">Close</button>
+                </div>
+            `);
+        }
+
+        // 4-step booking flow
+        // State
+        let bookingState = {
+            surgeonId: null,
+            procedure: null,
+            slot: null,
+            name: '',
+            phone: '',
+            concerns: ''
+        };
+        let currentStep = 1;
+
+        const procedureOptions = [
+            { id: 'rhinoplasty', name: 'Rhinoplasty', fee: '₹1,20,000' },
+            { id: 'facelift', name: 'Facelift', fee: '₹1,80,000' },
+            { id: 'eyelid', name: 'Eyelid Surgery', fee: '₹65,000' },
+            { id: 'contouring', name: 'Facial Contouring', fee: '₹2,20,000' },
+            { id: 'revision', name: 'Revision Surgery', fee: '₹1,50,000' }
+        ];
+
+        function startBooking(id) {
+            const d = surgeons.find(x => x.id === id);
+            if (!d) return;
+            bookingState = { surgeonId: id, procedure: null, slot: null, name: '', phone: '', concerns: '' };
+            currentStep = 1;
+            openModal(buildBookingModal(d));
+        }
+
+        function buildBookingModal(d) {
+            return `
+                <div id="bookingWizard">
+                    <!-- Progress bar -->
+                    <div class="bk-progress-bar" aria-hidden="true">
+                        <div class="bk-progress-fill" id="bkProgressFill" style="width:25%"></div>
+                    </div>
+
+                    <!-- Step indicators -->
+                    <div class="bk-steps" aria-label="Booking steps">
+                        <div class="bk-step-pill" id="bkPill1">1</div>
+                        <div class="bk-step-pill" id="bkPill2">2</div>
+                        <div class="bk-step-pill" id="bkPill3">3</div>
+                        <div class="bk-step-pill" id="bkPill4">4</div>
+                    </div>
+                    <div class="bk-step-label" id="bkStepLabel">Choose Procedure</div>
+
+                    <!-- Surgeon context -->
+                    <div class="bk-surgeon-context">
+                        <img src="${d.photo}" alt="${d.name}" class="bk-surgeon-thumb">
+                        <div>
+                            <div class="bk-surgeon-name">${d.name}</div>
+                            <div class="bk-surgeon-spec">${d.specialty}</div>
+                        </div>
+                    </div>
+
+                    <!-- Steps container -->
+                    <div class="bk-steps-container" id="bkStepsContainer">
+
+                        <!-- Step 1: Choose Procedure -->
+                        <div class="bk-step-panel" id="bkStep1">
+                            <div class="bk-proc-grid" id="bkProcGrid">
+                                ${procedureOptions.map(p => `
+                                    <div class="bk-proc-card" id="bkProc-${p.id}" onclick="selectProcedure('${p.id}')">
+                                        <div class="bk-proc-name">${p.name}</div>
+                                        <div class="bk-proc-fee">from ${p.fee}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="bk-nav">
+                                <button class="doc-btn ghost" onclick="closeModal()">Cancel</button>
+                                <button class="doc-btn book" id="bkNext1" onclick="goToStep(2)" disabled>Next →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Pick a Time -->
+                        <div class="bk-step-panel" id="bkStep2" style="display:none">
+                            <div class="bk-slots-grid" id="bkSlotsGrid">
+                                ${(d.nextAvailable || []).map(s =>
+                `<div class="bk-slot-pill" onclick="selectBookingSlot(this, '${s}')">${friendlyDate(s)}</div>`
+            ).join('') || '<span style="font-size:13px;color:var(--text-muted)">No slots available</span>'}
+                            </div>
+                            <div class="bk-nav">
+                                <button class="doc-btn ghost" onclick="goToStep(1)">← Back</button>
+                                <button class="doc-btn book" id="bkNext2" onclick="goToStep(3)" disabled>Next →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Your Details -->
+                        <div class="bk-step-panel" id="bkStep3" style="display:none">
+                            <label class="modal-label">Full Name</label>
+                            <input id="bkName" class="modal-input" type="text" placeholder="e.g. Priya Sharma"
+                                oninput="bookingState.name=this.value; updateStep3Next()" />
+
+                            <label class="modal-label">Phone Number</label>
+                            <input id="bkPhone" class="modal-input" type="tel" placeholder="+91 9XXXXXXXXX"
+                                oninput="bookingState.phone=this.value; updateStep3Next()" />
+
+                            <label class="modal-label" style="margin-top:12px;">Concerns <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+                            <textarea id="bkConcerns" class="modal-input" rows="3"
+                                placeholder="Describe any specific concerns or questions…"
+                                oninput="bookingState.concerns=this.value"
+                                style="resize:vertical;min-height:80px;"></textarea>
+
+                            <div class="bk-nav">
+                                <button class="doc-btn ghost" onclick="goToStep(2)">← Back</button>
+                                <button class="doc-btn book" id="bkNext3" onclick="goToStep(4)" disabled>Next →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Confirm -->
+                        <div class="bk-step-panel" id="bkStep4" style="display:none">
+                            <div class="bk-summary" id="bkSummary"></div>
+                            <p class="bk-confirm-note">Our team will call you to confirm within 2 hours.</p>
+                            <div class="bk-nav">
+                                <button class="doc-btn ghost" onclick="goToStep(3)">← Edit</button>
+                                <button class="doc-btn book" onclick="confirmBooking('${d.id}')">Confirm Booking</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectProcedure(procId) {
+            bookingState.procedure = procId;
+            document.querySelectorAll('.bk-proc-card').forEach(c => c.classList.remove('selected'));
+            const card = document.getElementById('bkProc-' + procId);
+            if (card) card.classList.add('selected');
+            const btn = document.getElementById('bkNext1');
+            if (btn) btn.disabled = false;
+        }
+
+        function selectBookingSlot(el, slot) {
+            bookingState.slot = slot;
+            document.querySelectorAll('.bk-slot-pill').forEach(s => s.classList.remove('selected'));
+            el.classList.add('selected');
+            const btn = document.getElementById('bkNext2');
+            if (btn) btn.disabled = false;
+        }
+
+        function updateStep3Next() {
+            const btn = document.getElementById('bkNext3');
+            if (btn) btn.disabled = !(bookingState.name.trim() && bookingState.phone.trim());
+        }
+
+        const stepLabels = ['Choose Procedure', 'Pick a Time', 'Your Details', 'Confirm'];
+        const stepProgress = ['25%', '50%', '75%', '100%'];
+
+        function goToStep(step) {
+            // Hide current, show next with slide
+            const current = document.getElementById('bkStep' + currentStep);
+            const next = document.getElementById('bkStep' + step);
+            if (!current || !next) return;
+
+            const dir = step > currentStep ? 1 : -1;
+            current.style.transform = `translateX(${-dir * 100}%)`;
+            current.style.opacity = '0';
+            setTimeout(() => { current.style.display = 'none'; current.style.transform = ''; current.style.opacity = ''; }, 250);
+
+            next.style.display = 'block';
+            next.style.transform = `translateX(${dir * 100}%)`;
+            next.style.opacity = '0';
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    next.style.transition = 'transform 0.25s ease, opacity 0.25s ease';
+                    next.style.transform = 'translateX(0)';
+                    next.style.opacity = '1';
+                    setTimeout(() => { next.style.transition = ''; }, 260);
+                });
+            });
+
+            currentStep = step;
+
+            // Update progress
+            const fill = document.getElementById('bkProgressFill');
+            if (fill) fill.style.width = stepProgress[step - 1];
+
+            // Update pills
+            for (let i = 1; i <= 4; i++) {
+                const pill = document.getElementById('bkPill' + i);
+                if (!pill) continue;
+                pill.className = 'bk-step-pill';
+                if (i < step) pill.classList.add('done');
+                else if (i === step) pill.classList.add('active');
+            }
+
+            // Update label
+            const lbl = document.getElementById('bkStepLabel');
+            if (lbl) lbl.textContent = stepLabels[step - 1];
+
+            // Build summary on step 4
+            if (step === 4) buildSummary();
+        }
+
+        function buildSummary() {
+            const d = surgeons.find(x => x.id === bookingState.surgeonId);
+            const proc = procedureOptions.find(p => p.id === bookingState.procedure);
+            const summaryEl = document.getElementById('bkSummary');
+            if (!summaryEl) return;
+            summaryEl.innerHTML = `
+                <div class="bk-summary-row">
+                    <span class="bk-summary-key">Surgeon</span>
+                    <span class="bk-summary-val">${d ? d.name : '—'}</span>
+                </div>
+                <div class="bk-summary-row">
+                    <span class="bk-summary-key">Procedure</span>
+                    <span class="bk-summary-val">${proc ? proc.name : '—'}</span>
+                </div>
+                <div class="bk-summary-row">
+                    <span class="bk-summary-key">Date & Time</span>
+                    <span class="bk-summary-val">${bookingState.slot ? friendlyDate(bookingState.slot) : '—'}</span>
+                </div>
+                <div class="bk-summary-row">
+                    <span class="bk-summary-key">Name</span>
+                    <span class="bk-summary-val">${bookingState.name || '—'}</span>
+                </div>
+                <div class="bk-summary-row">
+                    <span class="bk-summary-key">Phone</span>
+                    <span class="bk-summary-val">${bookingState.phone || '—'}</span>
+                </div>
+                ${bookingState.concerns ? `<div class="bk-summary-row">
+                    <span class="bk-summary-key">Concerns</span>
+                    <span class="bk-summary-val">${bookingState.concerns}</span>
+                </div>` : ''}
+                <div class="bk-summary-fee">
+                    ${proc ? proc.fee : ''}
+                </div>
+            `;
+        }
+
+        // slot picker
+        let selectedSlot = null;
+
+        function selectSlot(el, id, slot) {
+            document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedSlot = slot;
+        }
+
+        // confirm and show success
+        function confirmBooking(id) {
+            const d = surgeons.find(x => x.id === id);
+            const proc = procedureOptions.find(p => p.id === bookingState.procedure);
+            closeModal();
+            openModal(`
+                <div class="modal-name">Consultation Confirmed ✦</div>
+                <div class="modal-specialty" style="margin-bottom:20px;">
+                    ${d ? d.name : ''} &nbsp;·&nbsp; ${bookingState.slot ? friendlyDate(bookingState.slot) : 'Slot TBC'}
+                </div>
+                <p style="font-size:14px;color:var(--text-muted);line-height:1.7;">
+                    Thank you, <strong>${bookingState.name}</strong>. Your consultation for
+                    <strong>${proc ? proc.name : 'your procedure'}</strong> has been booked.
+                    Our team will call you at <strong>${bookingState.phone}</strong> to confirm within 2 hours.
+                </p>
+                <div class="modal-actions" style="margin-top:20px;">
+                    <button class="doc-btn book" onclick="closeModal()">Done</button>
+                </div>
+            `);
+            bookingState = { surgeonId: null, procedure: null, slot: null, name: '', phone: '', concerns: '' };
+        }
+
+        // open/close modal
+        function openModal(html) {
+            document.getElementById('modalContent').innerHTML = html;
+            document.getElementById('modalBackdrop').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(e) {
+            if (e) e.stopPropagation();
+            document.getElementById('modalBackdrop').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // filter and sort logic
+        function applyFilters() {
+            const q = (searchEl.value || '').trim().toLowerCase();
+            const loc = locFilter.value;
+            const spec = specFilter.value;
+            let res = surgeons.slice();
+
+            if (loc !== 'All') {
+                res = res.filter(d => d.hospital.toLowerCase().includes(loc.toLowerCase()));
+            }
+            if (spec !== 'All') {
+                res = res.filter(d =>
+                    d.specialty.toLowerCase().includes(spec.toLowerCase()) ||
+                    (d.procedures || []).some(p => p.toLowerCase().includes(spec.toLowerCase()))
+                );
+            }
+            if (q) {
+                res = res.filter(d =>
+                    [d.name, d.specialty, d.hospital, ...(d.procedures || [])]
+                        .join(' ').toLowerCase().includes(q)
+                );
+            }
+
+            const s = sortByEl.value;
+            if (s === 'rating') res.sort((a, b) => b.rating - a.rating);
+            else if (s === 'experience') res.sort((a, b) => b.experience - a.experience);
+            else if (s === 'fees') res.sort((a, b) => a.fees - b.fees);
+
+            renderSurgeons(res);
+        }
+
+        function resetFilters() {
+            searchEl.value = '';
+            locFilter.value = 'All';
+            specFilter.value = 'All';
+            sortByEl.value = 'best';
+            renderSurgeons(surgeons);
+        }
+
+        // wire up filter events
+        searchEl.addEventListener('input', () => {
+            clearTimeout(window._searchTO);
+            window._searchTO = setTimeout(applyFilters, 280);
+        });
+        locFilter.addEventListener('change', applyFilters);
+        specFilter.addEventListener('change', applyFilters);
+        sortByEl.addEventListener('change', applyFilters);
+
+        // first render on page load
+        renderSurgeons(surgeons);
+    </script>
+
+</body>
+
+</html>

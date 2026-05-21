@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — Bhoond Aesthetic Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+    <!-- sidebar -->
+    <aside class="dash-sidebar" aria-label="Dashboard navigation">
+        <a href="../index.html" class="dash-sidebar-logo">
+            <div class="dash-sidebar-logo-name">Bhoond</div>
+            <span class="dash-sidebar-logo-tag">Aesthetic Clinic</span>
+        </a>
+
+        <nav class="dash-sidebar-nav" aria-label="Dashboard menu">
+            <a href="#" class="dash-nav-item active" onclick="return false;">
+                <span class="dash-nav-icon">⊞</span> Dashboard
+            </a>
+            <a href="#" class="dash-nav-item" onclick="return false;">
+                <span class="dash-nav-icon">📅</span> My Consultations
+            </a>
+            <a href="#" class="dash-nav-item" onclick="return false;">
+                <span class="dash-nav-icon">✦</span> My Procedure
+            </a>
+            <a href="#" class="dash-nav-item" onclick="return false;">
+                <span class="dash-nav-icon">📄</span> Documents
+            </a>
+            <a href="#" class="dash-nav-item" onclick="return false;">
+                <span class="dash-nav-icon">⚙</span> Settings
+            </a>
+        </nav>
+
+        <div class="dash-sidebar-bottom">
+            <div class="dash-user-avatar" id="userAvatar">?</div>
+            <div class="dash-user-info">
+                <div class="dash-user-name" id="sidebarUserName">Loading…</div>
+                <button class="dash-signout" onclick="signOut()">Sign Out</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ── MAIN CONTENT ── -->
+    <main class="dash-main" aria-label="Dashboard content">
+
+        <!-- Welcome -->
+        <div class="dash-welcome">
+            <h1 class="dash-greeting" id="greeting">Good morning</h1>
+            <p class="dash-subtitle">Here's an overview of your care journey at Bhoond.</p>
+        </div>
+
+        <!-- Stats row -->
+        <div class="dash-stats-row" aria-label="Summary statistics">
+            <div class="dash-stat-card">
+                <div class="dash-stat-label">Upcoming Consultations</div>
+                <div class="dash-stat-value">1</div>
+            </div>
+            <div class="dash-stat-card">
+                <div class="dash-stat-label">Procedure Booked</div>
+                <div class="dash-stat-value">Rhinoplasty</div>
+            </div>
+            <div class="dash-stat-card">
+                <div class="dash-stat-label">Next Appointment</div>
+                <div class="dash-stat-value gold">Oct 24</div>
+            </div>
+            <div class="dash-stat-card">
+                <div class="dash-stat-label">Surgeon Assigned</div>
+                <div class="dash-stat-value" style="font-size:18px;">Dr. Priya Malhotra</div>
+            </div>
+        </div>
+
+        <!-- Upcoming consultation -->
+        <h2 class="dash-section-heading">Upcoming Consultation</h2>
+        <div class="dash-consult-card" aria-label="Upcoming consultation details">
+            <img
+                class="dash-consult-photo"
+                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&h=200&fit=crop"
+                alt="Dr. Priya Malhotra"
+                loading="lazy"
+            >
+            <div class="dash-consult-info">
+                <div class="dash-consult-surgeon">Dr. Priya Malhotra</div>
+                <div class="dash-consult-specialty">Rhinoplasty & Facial Contouring · M.Ch Plastic Surgery</div>
+                <div class="dash-consult-meta">
+                    <div class="dash-consult-meta-item">
+                        📅 <strong>Oct 24, 2025</strong> at 10:00 AM
+                    </div>
+                    <div class="dash-consult-meta-item">
+                        📍 <strong>Bhoond Aesthetic Clinic</strong>, Delhi
+                    </div>
+                </div>
+                <div class="dash-consult-actions">
+                    <button class="dash-btn dash-btn-outline" onclick="alert('Reschedule feature coming soon.')">
+                        Reschedule
+                    </button>
+                    <a href="./doctors.html" class="dash-btn dash-btn-outline">
+                        View Surgeon
+                    </a>
+                    <button class="dash-btn dash-btn-video" onclick="alert('Video call will be available 15 minutes before your appointment.')">
+                        🎥 Join Video Call
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Procedure progress stepper -->
+        <h2 class="dash-section-heading">Procedure Progress</h2>
+        <div class="dash-stepper-wrap" aria-label="Procedure progress steps">
+            <div class="dash-stepper">
+                <div class="dash-step done">
+                    <div class="dash-step-circle">✓</div>
+                    <div class="dash-step-label">Consultation Booked</div>
+                </div>
+                <div class="dash-step done">
+                    <div class="dash-step-circle">✓</div>
+                    <div class="dash-step-label">Pre-Op Assessment</div>
+                </div>
+                <div class="dash-step active">
+                    <div class="dash-step-circle">3</div>
+                    <div class="dash-step-label">Surgery</div>
+                </div>
+                <div class="dash-step">
+                    <div class="dash-step-circle">4</div>
+                    <div class="dash-step-label">Recovery Check</div>
+                </div>
+                <div class="dash-step">
+                    <div class="dash-step-circle">5</div>
+                    <div class="dash-step-label">Final Review</div>
+                </div>
+            </div>
+            <p class="dash-stepper-note">
+                Your surgery is scheduled for <strong>Oct 24, 2025</strong>. Pre-operative instructions have been sent to your email. Please arrive 30 minutes early and avoid food or drink after midnight.
+            </p>
+        </div>
+
+        <!-- Documents -->
+        <h2 class="dash-section-heading">My Documents</h2>
+        <div class="dash-docs-card" aria-label="Patient documents">
+            <div class="dash-doc-row">
+                <div class="dash-doc-icon">📋</div>
+                <div class="dash-doc-name">Pre-Operative Instructions.pdf</div>
+                <div class="dash-doc-date">Oct 10, 2025</div>
+                <a href="#" class="dash-doc-download" onclick="return false;">Download</a>
+            </div>
+            <div class="dash-doc-row">
+                <div class="dash-doc-icon">🩺</div>
+                <div class="dash-doc-name">Consultation Summary — Dr. Priya Malhotra.pdf</div>
+                <div class="dash-doc-date">Oct 5, 2025</div>
+                <a href="#" class="dash-doc-download" onclick="return false;">Download</a>
+            </div>
+            <div class="dash-doc-row">
+                <div class="dash-doc-icon">📝</div>
+                <div class="dash-doc-name">Consent Form — Rhinoplasty.pdf</div>
+                <div class="dash-doc-date">Oct 12, 2025</div>
+                <a href="#" class="dash-doc-download" onclick="return false;">Download</a>
+            </div>
+        </div>
+
+        <!-- Quick actions -->
+        <h2 class="dash-section-heading">Quick Actions</h2>
+        <div class="dash-quick-grid" aria-label="Quick actions">
+            <a href="./doctors.html" class="dash-quick-card">
+                <div class="dash-quick-icon">📅</div>
+                <div class="dash-quick-title">Book Another Consultation</div>
+                <div class="dash-quick-desc">Browse our surgeons and schedule a new appointment.</div>
+            </a>
+            <a href="./contact.html" class="dash-quick-card">
+                <div class="dash-quick-icon">💬</div>
+                <div class="dash-quick-title">Contact My Surgeon</div>
+                <div class="dash-quick-desc">Send a message or question to your care team.</div>
+            </a>
+            <a href="../index.html#procedures" class="dash-quick-card">
+                <div class="dash-quick-icon">✦</div>
+                <div class="dash-quick-title">View Procedures</div>
+                <div class="dash-quick-desc">Explore all procedures offered at Bhoond.</div>
+            </a>
+        </div>
+
+    </main>
+
+    <script>
+        // redirect to login if not signed in
+        (function () {
+            const raw = localStorage.getItem('aura_user');
+            if (!raw) {
+                window.location.href = './login.html';
+                return;
+            }
+            try {
+                const user = JSON.parse(raw);
+                const name = user.name || 'Patient';
+
+                // Greeting
+                const hour = new Date().getHours();
+                const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : 'evening';
+                document.getElementById('greeting').textContent = `Good ${timeOfDay}, ${name}`;
+
+                // Sidebar
+                document.getElementById('sidebarUserName').textContent = name;
+                document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
+            } catch {
+                window.location.href = './login.html';
+            }
+        })();
+
+        // clear session and redirect
+        function signOut() {
+            localStorage.removeItem('aura_user');
+            window.location.href = './login.html';
+        }
+    </script>
+
+</body>
+</html>

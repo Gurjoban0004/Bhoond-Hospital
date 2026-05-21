@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request Ambulance - Bhoond Hospital</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/ambulance.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="amb-container" role="main" aria-labelledby="pageTitle">
+        <header class="appbar">
+            <div class="brand">
+                <img src="../images/logo.jpg" alt="Bhoond Hospital logo">
+                <div style="display: flex; flex-direction: column; line-height: 1.2;">
+                    <span style="font-size: 18px; font-weight: 700;">Bhoond</span>
+                    <span style="font-size: 12px; opacity: 0.9;">Hospital</span>
+                </div>
+            </div>
+            <a href="../index.html" class="back" aria-label="Back to home"><i class="fa-solid fa-arrow-left"></i>
+                Home</a>
+        </header>
+
+        <section class="amb-main" aria-labelledby="pageTitle">
+            <div class="amb-hero">
+                <div class="info">
+                    <span class="kicker">Emergency Service</span>
+                    <h1 id="pageTitle">Request Ambulance</h1>
+                    <p class="lead">Fast, coordinated ambulance dispatch — specify location, contact and level of care.
+                        Use Call Ambulance for immediate phone contact.</p>
+
+                    <ul class="benefits" aria-hidden="false">
+                        <li><strong>24/7</strong> on-call ambulance fleet with trained paramedics.</li>
+                        <li><strong>Priority routing</strong> and hospital pre-notification.</li>
+                        <li>Optional stretcher and oxygen-equipped vehicles.</li>
+                    </ul>
+
+                    <div class="meta" aria-hidden="false">
+                        <div class="eta" id="eta">Estimated arrival: —</div>
+                        <div class="small-note">Typical response time depends on traffic and location.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="form-wrap" aria-labelledby="formTitle">
+            <h2 id="formTitle" style="margin:0 0 12px;color:var(--teal)">Request Details</h2>
+
+            <form id="ambulanceForm" class="request-form" onsubmit="return submitRequest(event)" novalidate>
+                <label for="pickup">Pickup address</label>
+                <input id="pickup" name="pickup" type="text" placeholder="Street, area, city" required>
+
+                <label for="landmark">Nearest landmark</label>
+                <input id="landmark" name="landmark" type="text" placeholder="e.g. near central mall">
+
+                <div class="row">
+                    <div class="col">
+                        <label for="contact">Contact number</label>
+                        <input id="contact" name="contact" type="tel" placeholder="+91 9xxxxxxxxx" required>
+                    </div>
+                    <div class="col">
+                        <label for="urgency">Urgency</label>
+                        <select id="urgency" name="urgency" required>
+                            <option value="immediate">Immediate (critical)</option>
+                            <option value="urgent">Urgent (serious)</option>
+                            <option value="nonurgent">Non-urgent (transport)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label for="needs">Required equipment / notes</label>
+                <textarea id="needs" name="needs" placeholder="e.g. stretcher, oxygen, wheelchair"></textarea>
+
+                <div class="actions">
+                    <a href="tel:+917837330004" class="amb-btn call" aria-label="Call ambulance now"><i
+                            class="fa-solid fa-phone"></i> Call Ambulance</a>
+                    <button type="button" class="amb-btn alert" onclick="sendAlert()"
+                        aria-label="Send alert to hospital"><i class="fa-solid fa-bell"></i> Send Alert</button>
+                    <button type="submit" class="amb-btn secondary" aria-label="Submit request">Submit
+                        Request</button>
+                </div>
+
+                <div style="margin-top:8px;font-size:13px;color:#5a6b68">
+                    By submitting you agree our team may contact you to confirm details.
+                </div>
+            </form>
+        </aside>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">Request sent — dispatch notified.</div>
+
+    <script>
+        // calculate a simple ETA estimate for demo purpose
+        function estimateETA(urgency) {
+            if (urgency === 'immediate') return '6–12 min';
+            if (urgency === 'urgent') return '15–30 min';
+            return '30–60 min';
+        }
+
+        document.getElementById('urgency').addEventListener('change', function () {
+            document.getElementById('eta').textContent = 'Estimated arrival: ' + estimateETA(this.value);
+        });
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3800);
+        }
+
+        function sendAlert() {
+            showToast('Alert sent — hospital team notified.');
+        }
+
+        function submitRequest(e) {
+            e.preventDefault();
+            const pickup = document.getElementById('pickup').value.trim();
+            const contact = document.getElementById('contact').value.trim();
+            const urgency = document.getElementById('urgency').value;
+
+            if (!pickup || !contact) {
+                alert('Please fill pickup address and contact number.');
+                return false;
+            }
+
+            // demo: show confirmation and update ETA
+            document.getElementById('eta').textContent = 'Estimated arrival: ' + estimateETA(urgency);
+            showToast('Request submitted — ambulance en route (demo).');
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>
