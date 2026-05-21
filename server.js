@@ -12,7 +12,8 @@ const doctorRoutes = require('./routes/doctorRoutes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// connect to MongoDB 
+// connect to MongoDB — if it fails, JSON file fallback kicks in automatically
+mongoose
     .connect(process.env.MONGO_URI)
     .then(() => console.log('✓ MongoDB connected'))
     .catch(err => console.warn('⚠ MongoDB not connected:', err.message));
